@@ -27,11 +27,11 @@ from config import DEBUG
 #---------- CLASS -----------#
 class Ingredient():
     """
-    This class represents the characteristics of all ingredients.
+        This class represents the characteristics of all ingredients.
     """
 
     #------ CONSTRUCTOR --------#
-    def __init__(self, amount=None, rarity=None, effectiveness=None, effect=None):
+    def __init__(self, name=None, amount=None, rarity=None, effectiveness=None, effect=None):
         """
         Creates an Ingredient object with information about its amount, rarity and effectiveness.
 
@@ -42,6 +42,8 @@ class Ingredient():
         if DEBUG:
             print('DEBUG: Ingredient object is being created.')
 
+        if name != '' and name is not None:
+            self.set_name(name)
         if amount != '' and amount is not None:
             self.set_amount(amount)
         if rarity != '' and rarity is not None:
@@ -54,6 +56,19 @@ class Ingredient():
 
     # ------ GETTER & SETTER --------#
 
+    # name
+    def set_name(self, value: str) -> None:
+        """Defines the name of the ingredient and formats it."""
+        value = value.strip().title()
+        self.__name = value
+
+    def get_name(self) -> None or str:
+        """Fetches the formatted name of the ingredient."""
+        try:
+            return self.__name
+        except AttributeError:
+            print('ERROR: Failed to get ingredient name.')
+
     # amount
     def set_amount(self, value: int or str) -> None:
         """Defines the amount of the ingredient."""
@@ -65,12 +80,12 @@ class Ingredient():
             if value < 0:
                 print('This is not a valid ingredient amount.')
             else:
-                self.amount = value
+                self.__amount = value
 
     def get_amount(self) -> None or int:
         """Fetches the amount of the ingredient."""
         try:
-            return self.amount
+            return self.__amount
         except AttributeError:
             print('ERROR: Failed to get amount.')
 
@@ -81,12 +96,12 @@ class Ingredient():
         if value != 'common' and value != 'rare' and value != 'legendary':
             print('This is not a valid rarity indicator for the ingredient.')
         else:
-            self.rarity = value
+            self.__rarity = value
 
     def get_rarity(self) -> None or str:
         """Fetches the rarity of the ingredient."""
         try:
-            return self.rarity
+            return self.__rarity
         except AttributeError:
             print('ERROR: Failed to get rarity.')
 
@@ -101,12 +116,12 @@ class Ingredient():
             if value < 1 or value > 10:
                 print('This is not a valid ingredient effectiveness.')
             else:
-                self.effectiveness = value
+                self.__effectiveness = value
 
     def get_effectiveness(self) -> None or int:
         """Fetches the effectiveness of the ingredient."""
         try:
-            return self.effectiveness
+            return self.__effectiveness
         except AttributeError:
             print('ERROR: Failed to get effectiveness.')
 
@@ -117,12 +132,12 @@ class Ingredient():
         if value != 'health' and value != 'magic':
             print('This is not a valid effect for the ingredient.')
         else:
-            self.effect = value
+            self.__effect = value
 
     def get_effect(self) -> None or str:
         """Fetches the effect of the ingredient."""
         try:
-            return self.effect
+            return self.__effect
         except AttributeError:
             print('ERROR: Failed to get effect.')
 
@@ -133,7 +148,7 @@ class Ingredient():
         """Returns which effect the ingredient has and how effective this effect is."""
         try:
             if self.get_effectiveness() is not None and self.get_effect() is not None:
-                return (f"This ingredient has a {self.get_effect()}-effect "
+                return (f"The ingredient {self.get_name()} has a {self.get_effect()}-effect "
                         f"with an effectiveness of {self.get_effectiveness()}.")
             else:
                 print('ERROR: Failed to check effect.')
