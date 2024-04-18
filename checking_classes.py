@@ -1,11 +1,15 @@
 #---------------------------------------#
-#---------- TESTING CLASSES -----------#
+#---------- TESTING CLASSES ------------#
 #---------------------------------------#
 
 #---------- IMPORTS --------------------#
 
 from classes.Ingredient import Ingredient
 from classes.Pouch import Pouch
+# from classes.Pet import Pet
+from classes.Dog import Dog
+from classes.Cat import Cat
+
 
 
 #---------- TESTING INGREDIENT ---------#
@@ -82,3 +86,109 @@ print('Testing invalid object: Add herb', pouch1.displayInventory())
 print('\n>>> Testing Pouch method removeIngredient():')
 pouch1.removeIngredient(herbs)
 print('Testing removing indredient:', pouch1.displayInventory())
+
+
+#---------- TESTING DOG ---------#
+print('\n>>> Testing empty Dog object:')
+
+dog1 = Dog()
+
+print('\nEmpty Dog object:',
+      '\nName:',    dog1.get_name(),
+      '\nAge:',     dog1.get_age(),
+      '\nColor:',   dog1.get_color(),
+      '\nHungry:',  dog1.get_hungry(),
+      '\nPronoun:', dog1.get_pronoun())
+
+
+print('\n>>> Testing filled Dog object:')
+
+# name=None, age=None, color=None, sex=None
+dog2 = Dog('Puppy', 5, 'brown', 'male')
+
+print('\nFilled Dog object:',
+      '\nName:',    dog2.get_name(),
+      '\nAge:',     dog2.get_age(),
+      '\nColor:',   dog2.get_color(),
+      '\nSex:',     dog2.get_sex(),
+      '\nHungry:',  dog2.get_hungry(),
+      '\nPronoun:', dog2.get_pronoun())
+
+
+print('\n>>> Testing faulty Dog object:')
+
+# name=None, age=None, color=None, sex=None
+dog3 = Dog('dried herbs', -1, '12', 'something')
+
+print('\nFaulty Dog object:',
+      '\nName:',    dog3.get_name(),
+      '\nAge:',     dog3.get_age(),
+      '\nColor:',   dog3.get_color(),
+      '\nSex:',     dog3.get_sex(),
+      '\nHungry:',  dog3.get_hungry(),
+      '\nPronoun:', dog3.get_pronoun())
+
+print('\n>>> Testing Dog methods:')
+print(dog2.adoptPet())
+print(dog2.call())
+print(dog2.pet())
+print(dog2.checkIfHungry())
+print(dog2.feed())
+print(dog2.checkIfHungry())
+print(dog2.play())
+print(dog2.checkIfHungry())
+print(dog2.look())
+
+
+#---------- TESTING CAT ---------#
+print('\n>>> Testing empty Cat object:')
+
+cat1 = Cat()
+
+print('\nEmpty Cat object:',
+      '\nName:',    cat1.get_name(),
+      '\nAge:',     cat1.get_age(),
+      '\nColor:',   cat1.get_color(),
+      '\nHungry:',  cat1.get_hungry(),
+      '\nPronoun:', cat1.get_pronoun())
+
+
+print('\n>>> Testing filled Cat object:')
+
+# name=None, age=None, color=None, sex=None
+cat2 = Cat('Kitty', 3, 'brown', 'female')
+
+print('\nFilled Cat object:',
+      '\nName:',    cat2.get_name(),
+      '\nAge:',     cat2.get_age(),
+      '\nColor:',   cat2.get_color(),
+      '\nSex:',     cat2.get_sex(),
+      '\nHungry:',  cat2.get_hungry(),
+      '\nPronoun:', cat2.get_pronoun())
+
+
+print('\n>>> Testing faulty Cat object:')
+
+# name=None, age=None, color=None, sex=None
+cat3 = Cat('dried herbs', -1, '12', 'something')
+
+print('\nFaulty Cat object:',
+      '\nName:',    cat3.get_name(),
+      '\nAge:',     cat3.get_age(),
+      '\nColor:',   cat3.get_color(),
+      '\nSex:',     cat3.get_sex(),
+      '\nHungry:',  cat3.get_hungry(),
+      '\nPronoun:', cat3.get_pronoun())
+
+print('\n>>> Testing Cat methods:')
+print(cat2.adoptPet())
+print(cat2.call())
+print(cat2.pet())
+print(cat2.checkIfHungry())
+print(cat2.feed())
+print(cat2.checkIfHungry())
+print(cat2.play())
+print(cat2.checkIfHungry())
+print(cat2.look())
+
+

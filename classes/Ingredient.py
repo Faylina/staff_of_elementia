@@ -35,9 +35,9 @@ class Ingredient():
         """
         Creates an Ingredient object with information about its amount, rarity and effectiveness.
 
-        :param amount:int           = None      amount of the same ingredient
-        :param rarity:str           = None      the rarity of the ingredient in the forest
-        :param effectiveness:int    = None      the effectiveness of this ingredient in potions
+        :param __amount:int           = None      amount of the same ingredient
+        :param __rarity:str           = None      the rarity of the ingredient in the forest
+        :param __effectiveness:int    = None      the effectiveness of this ingredient in potions
         """
         if DEBUG:
             print('DEBUG: Ingredient object is being created.')

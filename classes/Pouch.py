@@ -36,7 +36,7 @@ class Pouch():
         """
         Creates a Pouch object with information about its content.
 
-        :param inventory:int = []      list of ingredients in the pouch
+        :param __inventory:int = []      list of ingredients in the pouch
         """
         if DEBUG:
             print('DEBUG: Pouch object is being created.')
@@ -99,6 +99,7 @@ class Pouch():
             # check if the object is actually an ingredient
             if isinstance(ingredient, Ingredient):
                 self.get_inventory().append(ingredient)
+                return 'The item has been added to your inventory.'
             else:
                 print('This is not an ingredient.')
         except AttributeError:
@@ -110,6 +111,7 @@ class Pouch():
             # check if the object is actually an ingredient
             if isinstance(ingredient, Ingredient):
                 self.get_inventory().remove(ingredient)
+                return 'The item has been removed from your inventory.'
             else:
                 print('This is not an ingredient.')
         except AttributeError:
