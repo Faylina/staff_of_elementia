@@ -6,22 +6,7 @@
 
 #---------- IMPORTS -----------#
 from abc import ABC, abstractmethod
-
-# importing DEBUG-constant from config file
-import sys
-import os
-
-# getting the name of the directory where this file is located.
-current = os.path.dirname(os.path.realpath(__file__))
-
-# Getting the parent directory name where the current directory is located.
-parent = os.path.dirname(current)
-
-# adding the parent directory to the sys.path.
-sys.path.append(parent)
-
-# import
-from config import DEBUG
+from debugging import debug_functions
 
 
 #---------- CLASS -----------#
@@ -43,8 +28,7 @@ class Pet(ABC):
         :param _hungry: bool = True      indicates whether the pet is hungry
         :param _pronoun: str = None      pronoun to use for the pet
         """
-        if DEBUG:
-            print('DEBUG: Pet object is being created.')
+        debug_functions.debugClass(self)
 
         if name != '' and name is not None:
             self.set_name(name)
@@ -153,6 +137,7 @@ class Pet(ABC):
 
     def adoptPet(self) -> str:
         """Congratulates the player for adopting their new pet."""
+        debug_functions.debugMethod(self)
         adoption_certificate = "You've welcomed a new family member into your life!"
         adoption_certificate += "\nThis little friend, is now yours forever,"
         adoption_certificate += "\nsharing the adventure and growing with you every step of the way. \nCongrats!"
@@ -163,24 +148,29 @@ class Pet(ABC):
 
     def call(self) -> str:
         """Calls the pet."""
+        debug_functions.debugMethod(self)
         return f"{self.get_name()} runs to you happily."
 
     def pet(self) -> str:
         """Pets the pet."""
+        debug_functions.debugMethod(self)
         return f"{self.get_name()} rolls on {self.get_pronoun()} back, visibly enjoying your affection."
 
     def feed(self) -> str:
         """Feeds the pet."""
+        debug_functions.debugMethod(self)
         self.set_hungry(False)
         return f"{self.get_name()} eats happily."
 
     def play(self) -> str:
         """Plays with the pet."""
+        debug_functions.debugMethod(self)
         self.set_hungry(True)
         return f"{self.get_name()} plays with you, jumping around in excitement."
 
     def checkIfHungry(self) -> str:
         """Checks if the pet is hungry."""
+        debug_functions.debugMethod(self)
         if self.get_hungry() == True:
             return f"{self.get_name()} is hungry!"
         else:

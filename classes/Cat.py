@@ -6,22 +6,7 @@
 
 #---------- IMPORTS -----------#
 from classes.Pet import Pet
-
-# importing DEBUG-constant from config file
-import sys
-import os
-
-# getting the name of the directory where this file is located.
-current = os.path.dirname(os.path.realpath(__file__))
-
-# Getting the parent directory name where the current directory is located.
-parent = os.path.dirname(current)
-
-# adding the parent directory to the sys.path.
-sys.path.append(parent)
-
-# import
-from config import DEBUG
+from debugging import debug_functions
 
 
 #---------- CLASS -----------#
@@ -43,8 +28,7 @@ class Cat(Pet):
         :param _pronoun : str    = None      pronoun to use for the cat
         :param __cat_art: str    = string    cat art
         """
-        if DEBUG:
-            print('DEBUG: Cat object is being created.')
+        debug_functions.debugClass(self)
 
         super().__init__(name, age, color, sex)
 
@@ -68,6 +52,7 @@ class Cat(Pet):
 
     def look(self) -> str:
         """Look at the cat."""
+        debug_functions.debugMethod(self)
         your_cat = self.get_art()
         your_cat += f"\n{self.get_name()} is a {self.get_color()}, {self.get_sex()} cat"
         your_cat += f"\nand is {self.get_age()} years old."
@@ -75,6 +60,7 @@ class Cat(Pet):
 
     def pet(self) -> str:
         """Pets the cat."""
+        debug_functions.debugMethod(self)
         return f"{self.get_name()} rolls on {self.get_pronoun()} back, purring."
 
     def sneakAttack(self):

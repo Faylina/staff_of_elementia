@@ -5,23 +5,7 @@
 """The class for the creation of all spells"""
 
 #---------- IMPORTS -----------#
-
-# importing DEBUG-constant from config file
-
-import sys
-import os
-
-# getting the name of the directory where this file is located.
-current = os.path.dirname(os.path.realpath(__file__))
-
-# Getting the parent directory name where the current directory is located.
-parent = os.path.dirname(current)
-
-# adding the parent directory to the sys.path.
-sys.path.append(parent)
-
-# import
-from config import DEBUG
+from debugging import debug_functions
 
 
 #---------- CLASS -----------#
@@ -42,8 +26,7 @@ class Spell():
         :param __effectiveness  :int    = None      effectiveness of the spell for damage and healing
         :param __cost           :int    = None      cost of the spell
         """
-        if DEBUG:
-            print('DEBUG: Spell object is being created.')
+        debug_functions.debugClass(self)
 
         if name != '' and name is not None:
             self.set_name(name)
@@ -164,6 +147,7 @@ class Spell():
 
     def checkEffect(self):
         """Returns a description of the spell's effect."""
+        debug_functions.debugMethod(self)
         if self.get_effect() == "offensive":
             return (f"{self.get_name()} uses the element of {self.get_element()} "
                     f"to deal {self.get_effectiveness()} points of damage to the opponent.")

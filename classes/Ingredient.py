@@ -5,23 +5,7 @@
 """The class for the creation of all ingredients"""
 
 #---------- IMPORTS -----------#
-
-# importing DEBUG-constant from config file
-
-import sys
-import os
-
-# getting the name of the directory where this file is located.
-current = os.path.dirname(os.path.realpath(__file__))
-
-# Getting the parent directory name where the current directory is located.
-parent = os.path.dirname(current)
-
-# adding the parent directory to the sys.path.
-sys.path.append(parent)
-
-# import
-from config import DEBUG
+from debugging import debug_functions
 
 
 #---------- CLASS -----------#
@@ -41,8 +25,7 @@ class Ingredient():
         :param __effectiveness  :int    = None      the effectiveness of this ingredient in potions
         :param __effect         :str    = None      effect of the ingredient
         """
-        if DEBUG:
-            print('DEBUG: Ingredient object is being created.')
+        debug_functions.debugClass(self)
 
         if name != '' and name is not None:
             self.set_name(name)
@@ -148,6 +131,7 @@ class Ingredient():
 
     def checkEffect(self):
         """Returns which effect the ingredient has and how effective this effect is."""
+        debug_functions.debugMethod(self)
         try:
             if self.get_effectiveness() is not None and self.get_effect() is not None:
                 return (f"The ingredient {self.get_name()} has a {self.get_effect()}-effect "

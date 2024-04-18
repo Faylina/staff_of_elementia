@@ -7,22 +7,7 @@
 #---------- IMPORTS -----------#
 
 from classes.Ingredient import Ingredient
-
-# importing DEBUG-constant from config file
-import sys
-import os
-
-# getting the name of the directory where this file is located.
-current = os.path.dirname(os.path.realpath(__file__))
-
-# Getting the parent directory name where the current directory is located.
-parent = os.path.dirname(current)
-
-# adding the parent directory to the sys.path.
-sys.path.append(parent)
-
-# import
-from config import DEBUG
+from debugging import debug_functions
 
 
 #---------- CLASS -----------#
@@ -38,8 +23,7 @@ class Pouch():
 
         :param __inventory  :list = []      list of ingredients in the pouch
         """
-        if DEBUG:
-            print('DEBUG: Pouch object is being created.')
+        debug_functions.debugClass(self)
 
         self.set_inventory(inventory)
 
@@ -88,6 +72,7 @@ class Pouch():
 
     def displayInventory(self) -> str:
         """Lists all ingredients in the pouch with their respective amounts."""
+        debug_functions.debugMethod(self)
         current_inventory = '\nYour current inventory:'
         for item in self.get_inventory():
             current_inventory += f"\n\t{item.get_amount()}x {item.get_name()}"
@@ -95,6 +80,7 @@ class Pouch():
 
     def addIngredient(self, ingredient: Ingredient) -> None:
         """Adds an ingredient to the pouch."""
+        debug_functions.debugMethod(self)
         try:
             # check if the object is actually an ingredient
             if isinstance(ingredient, Ingredient):
@@ -107,6 +93,7 @@ class Pouch():
 
     def removeIngredient(self, ingredient: Ingredient) -> None:
         """Removes an ingredient from the pouch."""
+        debug_functions.debugMethod(self)
         try:
             # check if the object is actually an ingredient
             if isinstance(ingredient, Ingredient):

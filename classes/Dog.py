@@ -6,22 +6,7 @@
 
 #---------- IMPORTS -----------#
 from classes.Pet import Pet
-
-# importing DEBUG-constant from config file
-import sys
-import os
-
-# getting the name of the directory where this file is located.
-current = os.path.dirname(os.path.realpath(__file__))
-
-# Getting the parent directory name where the current directory is located.
-parent = os.path.dirname(current)
-
-# adding the parent directory to the sys.path.
-sys.path.append(parent)
-
-# import
-from config import DEBUG
+from debugging import debug_functions
 
 
 #---------- CLASS -----------#
@@ -43,8 +28,7 @@ class Dog(Pet):
         :param _pronoun : str    = None      pronoun to use for the dog
         :param __dog_art: str    = string    dog art
         """
-        if DEBUG:
-            print('DEBUG: Dog object is being created.')
+        debug_functions.debugClass(self)
 
         super().__init__(name, age, color, sex)
 
@@ -69,6 +53,7 @@ class Dog(Pet):
 
     def look(self) -> str:
         """Look at the dog."""
+        debug_functions.debugMethod(self)
         your_dog = self.get_art()
         your_dog += f"\n{self.get_name()} is a {self.get_color()}, {self.get_sex()} dog"
         your_dog += f"\nand is {self.get_age()} years old."
@@ -76,6 +61,7 @@ class Dog(Pet):
 
     def givePaw(self) -> str:
         """Dog give paw."""
+        debug_functions.debugMethod(self)
         return f"{self.get_name()} puts {self.get_pronoun()} paw in your hand, looking cheerful."
 
     def fetchItem(self):

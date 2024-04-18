@@ -7,22 +7,7 @@
 #---------- IMPORTS -----------#
 
 from classes.Spell import Spell
-
-# importing DEBUG-constant from config file
-import sys
-import os
-
-# getting the name of the directory where this file is located.
-current = os.path.dirname(os.path.realpath(__file__))
-
-# Getting the parent directory name where the current directory is located.
-parent = os.path.dirname(current)
-
-# adding the parent directory to the sys.path.
-sys.path.append(parent)
-
-# import
-from config import DEBUG
+from debugging import debug_functions
 
 
 #---------- CLASS -----------#
@@ -38,8 +23,7 @@ class Spellbook():
 
         :param __arsenal    : list = []      list of spells in the spellbook
         """
-        if DEBUG:
-            print('DEBUG: Spellbook object is being created.')
+        debug_functions.debugClass(self)
 
         self.set_arsenal(arsenal)
 
@@ -67,6 +51,7 @@ class Spellbook():
 
     def displayArsenal(self) -> str:
         """Lists all spells in the spellbook."""
+        debug_functions.debugMethod(self)
         current_arsenal = '\nYour current arsenal:'
         for spell in self.get_arsenal():
             current_arsenal += f"\n\t{spell.get_name()} (Element: {spell.get_element()})"
@@ -74,6 +59,7 @@ class Spellbook():
 
     def addSpell(self, spell: Spell) -> None:
         """Adds a spell to the spellbook."""
+        debug_functions.debugMethod(self)
         try:
             # check if the object is actually a spell
             if isinstance(spell, Spell):
