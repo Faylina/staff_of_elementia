@@ -31,12 +31,13 @@ class Spell():
     """
 
     #------ CONSTRUCTOR --------#
-    def __init__(self, name=None, description=None, effect=None, effectiveness=None, cost=None):
+    def __init__(self, name=None, description=None, element=None, effect=None, effectiveness=None, cost=None):
         """
         Creates an Ingredient object with information about its amount, rarity and effectiveness.
 
         :param __name           :str    = None      name of the spell
         :param __description    :int    = None      what does the spell do?
+        :param __element        :str    = None      the element of the spell
         :param __effect         :str    = None      effect of the spell
         :param __effectiveness  :int    = None      effectiveness of the spell for damage and healing
         :param __cost           :int    = None      cost of the spell
@@ -48,13 +49,14 @@ class Spell():
             self.set_name(name)
         if description != '' and description is not None:
             self.set_description(description)
+        if element != '' and element is not None:
+            self.set_element(element)
         if effect != '' and effect is not None:
             self.set_effect(effect)
         if effectiveness != '' and effectiveness is not None:
             self.set_effectiveness(effectiveness)
         if cost != '' and cost is not None:
             self.set_cost(cost)
-
 
 
     # ------ GETTER & SETTER --------#
@@ -84,6 +86,22 @@ class Spell():
             return self.__description
         except AttributeError:
             print('ERROR: Failed to get the spell description.')
+
+    # element
+    def set_element(self, value: str) -> None:
+        """Defines the element of the spell."""
+        value = value.strip().title()
+        if value != 'Earth' and value != 'Water' and value != 'Air' and value != 'Fire':
+            print('This is not a valid element of a spell.')
+        else:
+            self.__element = value
+
+    def get_element(self) -> None or str:
+        """Fetches the element of the spell."""
+        try:
+            return self.__element
+        except AttributeError:
+            print('ERROR: Failed to get element of the spell.')
 
     # effect
     def set_effect(self, value: str) -> None:
@@ -147,8 +165,12 @@ class Spell():
     def checkEffect(self):
         """Returns a description of the spell's effect."""
         if self.get_effect() == "offensive":
-            return f"Deals {self.get_effectiveness()} points damage to the opponent."
-        elif self.get_effect() == "defensive" or self.get_effect() == "healing":
-            return f"Restores {self.get_effectiveness()} health points."
+            return (f"{self.get_name()} uses the element of {self.get_element()} "
+                    f"to deal {self.get_effectiveness()} points of damage to the opponent.")
+        elif self.get_effect() == "defensive":
+            return (f"{self.get_name()} restores {self.get_effectiveness()} health points "
+                    f"and defends with the power of {self.get_element()}.")
+        elif self.get_effect() == "healing":
+            return f"{self.get_name()} restores {self.get_effectiveness()} health points."
 
 

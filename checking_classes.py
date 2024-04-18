@@ -10,6 +10,7 @@ from classes.Pouch import Pouch
 from classes.Dog import Dog
 from classes.Cat import Cat
 from classes.Spell import Spell
+from classes.Spellbook import Spellbook
 
 
 
@@ -202,6 +203,7 @@ spell1 = Spell()
 print('\nEmpty Spell object:',
       '\nName:',              spell1.get_name(),
       '\nDescription:',       spell1.get_description(),
+      '\nElement:',           spell1.get_element(),
       '\nEffect:',            spell1.get_effect(),
       '\nEffectiveness:',     spell1.get_effectiveness(),
       '\nCost:',              spell1.get_cost())
@@ -212,6 +214,7 @@ print('\n>>> Testing filled Spell object:')
 # name=None, description=None, effect=None, effectiveness=None, cost=None
 spell2 = Spell('Windgust',
                'creates a powerful gust of wind that knocks back enemies',
+               'Air',
                'offensive',
                10,
                5)
@@ -219,6 +222,7 @@ spell2 = Spell('Windgust',
 print('\nFilled Spell object:',
       '\nName:',              spell2.get_name(),
       '\nDescription:',       spell2.get_description(),
+      '\nElement:',           spell2.get_element(),
       '\nEffect:',            spell2.get_effect(),
       '\nEffectiveness:',     spell2.get_effectiveness(),
       '\nCost:',              spell2.get_cost())
@@ -227,16 +231,42 @@ print('\nFilled Spell object:',
 print('\n>>> Testing faulty Spell object:')
 
 # name=None, description=None, effect=None, effectiveness=None, cost=None
-spell3 = Spell('windgust', 'does something', 'healing', 'something', 'much')
+spell3 = Spell('windgust', 'does something', 'water', 'healing', 'something', 'much')
 
 print('\nFaulty Spell object:',
       '\nName:',              spell3.get_name(),
       '\nDescription:',       spell3.get_description(),
+      '\nElement:',           spell3.get_element(),
       '\nEffect:',            spell3.get_effect(),
       '\nEffectiveness:',     spell3.get_effectiveness(),
       '\nCost:',              spell3.get_cost())
 
 print('\n>>> Testing Spell methods:')
 print(spell2.checkEffect())
+
+
+
+#---------- TESTING SPELLBOOK ---------#
+print('\n>>> Testing empty Spellbook object:')
+# arsenal=[]
+spellbook1 = Spellbook()
+print('\nEmpty Spellbook object:',
+      '\nArsenal:', spellbook1.get_arsenal())
+
+print('\n>>> Testing faulty Spellbook object:')
+# arsenal=[]
+spellbook2 = Spellbook(['spell'])
+print('\nFaulty Spellbook object:',
+      '\nArsenal:', spellbook2.get_arsenal())
+
+print('\n>>> Testing Spellbook method addSpell():')
+print(spellbook1.addSpell(spell2))
+
+print('\n>>> Testing Spellbook method displayArsenal():')
+print('Filled Spellbook', spellbook1.displayArsenal())
+
+herb = 'herb'
+spellbook1.addSpell(herb)
+print('Testing invalid object: Add herb', spellbook1.displayArsenal())
 
 

@@ -34,9 +34,9 @@ class Pouch():
     # ------ CONSTRUCTOR --------#
     def __init__(self, inventory=[]):
         """
-        Creates a Pouch object with information about its content.
+        Creates a Pouch object with information about its contents.
 
-        :param __inventory:int = []      list of ingredients in the pouch
+        :param __inventory  :list = []      list of ingredients in the pouch
         """
         if DEBUG:
             print('DEBUG: Pouch object is being created.')
