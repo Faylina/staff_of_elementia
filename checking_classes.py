@@ -9,6 +9,7 @@ from classes.Pouch import Pouch
 # from classes.Pet import Pet
 from classes.Dog import Dog
 from classes.Cat import Cat
+from classes.Spell import Spell
 
 
 
@@ -41,7 +42,7 @@ print('\nFilled Ingredient object:',
 print('\n>>> Testing faulty Ingredient object:')
 
 # name=None, amount=None, rarity=None, effectiveness=None, effect=None
-ingredient3 = Ingredient('dried herbs', -1, 'Commo', 12, 'stamina')
+ingredient3 = Ingredient('dried herbs', -1, 'Commo', '12', 'stamina')
 
 print('\nFaulty Ingredient object:',
       '\nName:',           ingredient3.get_name(),
@@ -190,5 +191,52 @@ print(cat2.checkIfHungry())
 print(cat2.play())
 print(cat2.checkIfHungry())
 print(cat2.look())
+
+
+
+#---------- TESTING SPELL ---------#
+print('\n>>> Testing empty Spell object:')
+
+spell1 = Spell()
+
+print('\nEmpty Spell object:',
+      '\nName:',              spell1.get_name(),
+      '\nDescription:',       spell1.get_description(),
+      '\nEffect:',            spell1.get_effect(),
+      '\nEffectiveness:',     spell1.get_effectiveness(),
+      '\nCost:',              spell1.get_cost())
+
+
+print('\n>>> Testing filled Spell object:')
+
+# name=None, description=None, effect=None, effectiveness=None, cost=None
+spell2 = Spell('Windgust',
+               'creates a powerful gust of wind that knocks back enemies',
+               'offensive',
+               10,
+               5)
+
+print('\nFilled Spell object:',
+      '\nName:',              spell2.get_name(),
+      '\nDescription:',       spell2.get_description(),
+      '\nEffect:',            spell2.get_effect(),
+      '\nEffectiveness:',     spell2.get_effectiveness(),
+      '\nCost:',              spell2.get_cost())
+
+
+print('\n>>> Testing faulty Spell object:')
+
+# name=None, description=None, effect=None, effectiveness=None, cost=None
+spell3 = Spell('windgust', 'does something', 'healing', 'something', 'much')
+
+print('\nFaulty Spell object:',
+      '\nName:',              spell3.get_name(),
+      '\nDescription:',       spell3.get_description(),
+      '\nEffect:',            spell3.get_effect(),
+      '\nEffectiveness:',     spell3.get_effectiveness(),
+      '\nCost:',              spell3.get_cost())
+
+print('\n>>> Testing Spell methods:')
+print(spell2.checkEffect())
 
 

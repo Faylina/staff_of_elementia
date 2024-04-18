@@ -35,9 +35,11 @@ class Ingredient():
         """
         Creates an Ingredient object with information about its amount, rarity and effectiveness.
 
-        :param __amount:int           = None      amount of the same ingredient
-        :param __rarity:str           = None      the rarity of the ingredient in the forest
-        :param __effectiveness:int    = None      the effectiveness of this ingredient in potions
+        :param __name           :str    = None      name of the ingredient
+        :param __amount         :int    = None      amount of the same ingredient
+        :param __rarity         :str    = None      the rarity of the ingredient in the forest
+        :param __effectiveness  :int    = None      the effectiveness of this ingredient in potions
+        :param __effect         :str    = None      effect of the ingredient
         """
         if DEBUG:
             print('DEBUG: Ingredient object is being created.')
@@ -110,7 +112,7 @@ class Ingredient():
         """Defines the effectiveness of the ingredient."""
         try:
             value = int(value)
-        except TypeError:
+        except ValueError:
             print('The data format of the ingredient effectiveness is not an integer.')
         else:
             if value < 1 or value > 10:
@@ -130,7 +132,7 @@ class Ingredient():
         """Defines the effect of the ingredient."""
         value = value.strip().lower()
         if value != 'health' and value != 'magic':
-            print('This is not a valid effect for the ingredient.')
+            print('This is not a valid effect of a ingredient.')
         else:
             self.__effect = value
 
