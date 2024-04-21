@@ -17,7 +17,8 @@ class Spell:
     #------ CONSTRUCTOR --------#
     def __init__(self, name=None, description=None, element=None, effect=None, effectiveness=None, cost=None):
         """
-        Creates an Ingredient object with information about its amount, rarity and effectiveness.
+        Creates a Spell object with information about its name, description, element,
+        effect, effectiveness and cost.
 
         :param __name           :str    = None      name of the spell
         :param __description    :int    = None      what does the spell do?
@@ -51,7 +52,7 @@ class Spell:
             value = value.strip().title()
             self.__name = value
         except AttributeError:
-            print('This is not a valid name.')
+            print('This is not a valid spell name.')
 
     def get_name(self) -> None or str:
         """Fetches the formatted name of the spell."""

@@ -12,6 +12,7 @@ from classes.Cat import Cat
 from classes.Spell import Spell
 from classes.Spellbook import Spellbook
 from classes.Witch import Witch
+from classes.Potion import Potion
 
 
 
@@ -22,36 +23,36 @@ ingredient1 = Ingredient()
 
 print('\nEmpty Ingredient object:',
       '\nName:',           ingredient1.get_name(),
-      '\nAmount:',         ingredient1.get_amount(),
       '\nRarity:',         ingredient1.get_rarity(),
       '\nEffectiveness:',  ingredient1.get_effectiveness(),
-      '\nEffect:',         ingredient1.get_effect())
+      '\nEffect:',         ingredient1.get_effect(),
+      '\nAmount:',         ingredient1.get_amount())
 
 
 print('\n>>> Testing filled Ingredient object:')
 
-# name=None, amount=None, rarity=None, effectiveness=None, effect=None
-ingredient2 = Ingredient('dried herbs', 2, 'Common', 3, 'health')
+# name=None, rarity=None, effectiveness=None, effect=None, amount=None
+ingredient2 = Ingredient('dried herbs', 'Common', 3, 'health', 2)
 
 print('\nFilled Ingredient object:',
       '\nName:',           ingredient2.get_name(),
-      '\nAmount:',         ingredient2.get_amount(),
       '\nRarity:',         ingredient2.get_rarity(),
       '\nEffectiveness:',  ingredient2.get_effectiveness(),
-      '\nEffect:',         ingredient2.get_effect())
+      '\nEffect:',         ingredient2.get_effect(),
+      '\nAmount:',         ingredient2.get_amount())
 
 
 print('\n>>> Testing faulty Ingredient object:')
 
-# name=None, amount=None, rarity=None, effectiveness=None, effect=None
-ingredient3 = Ingredient('dried herbs', -1, 'Commo', '12', 'stamina')
+# name=None, rarity=None, effectiveness=None, effect=None, amount=None
+ingredient3 = Ingredient('dried herbs', 'Commo', '12', 'stamina')
 
 print('\nFaulty Ingredient object:',
       '\nName:',           ingredient3.get_name(),
-      '\nAmount:',         ingredient3.get_amount(),
       '\nRarity:',         ingredient3.get_rarity(),
       '\nEffectiveness:',  ingredient3.get_effectiveness(),
-      '\nEffect:',         ingredient3.get_effect())
+      '\nEffect:',         ingredient3.get_effect(),
+      '\nAmount:',         ingredient3.get_amount())
 
 print('\n>>> Testing Ingredient method checkEffect():')
 print('\nFilled Ingredient object:', ingredient2.checkEffect())
@@ -77,7 +78,7 @@ print('\n>>> Testing Pouch method displayInventory():')
 print(pouch1.displayInventory())
 
 print('\n>>> Testing Pouch method addIngredient():')
-herbs = Ingredient('herbs', 1, 'common', 2, 'magic')
+herbs = Ingredient('herbs', 'common', 2, 'magic')
 pouch1.addIngredient(herbs)
 print('Testing valid object: Add herbs', pouch1.displayInventory())
 
@@ -391,6 +392,58 @@ print("\nCast spell:",         witch2.castSpell())
 print("\nWalk:",               witch2.walk())
 print("\nSearch:",             witch2.search())
 print("\nFlee:",               witch2.flee())
+
+
+
+#---------- TESTING POTION ---------#
+print('\n>>> Testing empty Potion object:')
+
+potion1 = Potion()
+
+print('\nEmpty Potion object:',
+      '\nName:',           potion1.get_name(),
+      '\nDescription:',    potion1.get_description(),
+      '\nEffect:',         potion1.get_effect(),
+      '\nEffectiveness:',  potion1.get_effectiveness(),
+      '\nElement:',        potion1.get_element(),
+      '\nAmount:',         potion1.get_amount())
+
+
+print('\n>>> Testing filled Potion object:')
+
+# name=None, description=None, effect=None, effectiveness=None, element=None, amount=1
+potion2 = Potion('healing potion',
+                 'Heals a certain amount of HP.',
+                 'healing',
+                 20,
+                 'air',
+                 2)
+
+print('\nFilled Potion object:',
+      '\nName:',           potion2.get_name(),
+      '\nDescription:',    potion2.get_description(),
+      '\nEffect:',         potion2.get_effect(),
+      '\nEffectiveness:',  potion2.get_effectiveness(),
+      '\nElement:',        potion2.get_element(),
+      '\nAmount:',         potion2.get_amount())
+
+
+print('\n>>> Testing faulty Potion object:')
+
+# name=None, description=None, effect=None, effectiveness=None, element=None, amount=1
+potion3 = Potion(12, 5, '12', 'stamina', 15)
+
+print('\nFaulty Potion object:',
+      '\nName:',           potion1.get_name(),
+      '\nDescription:',    potion1.get_description(),
+      '\nEffect:',         potion1.get_effect(),
+      '\nEffectiveness:',  potion1.get_effectiveness(),
+      '\nElement:',        potion1.get_element(),
+      '\nAmount:',         potion1.get_amount())
+
+print('\n>>> Testing Potion method checkEffect():')
+print('\nFilled Potion object:', potion2.checkEffect())
+print('\nFaulty Potion object:', potion3.checkEffect())
 
 
 

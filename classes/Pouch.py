@@ -41,21 +41,21 @@ class Pouch:
         else:
             # the witch starts the game with some basic ingredients that are added to her pouch
             # name = None, amount = None, rarity = None, effectiveness = None, effect = None
-            small_mixed_herbs = Ingredient('small pouch of mixed herbs',
-                                                    3,
-                                                    'common',
-                                                    1,
-                                                    'health')
-            vial_of_moonlight = Ingredient('vial of concentrated moonlight essence',
-                                                                3,
-                                                                'common',
-                                                                1,
-                                                                'magic')
+            small_mixed_herbs = Ingredient( 'small pouch of mixed herbs',
+                                            'common',
+                                            1,
+                                            'health',
+                                            3)
+            vial_of_moonlight = Ingredient( 'vial of concentrated moonlight essence',
+                                            'common',
+                                            1,
+                                            'magic',
+                                            3)
             handful_of_soil = Ingredient('handful of enchanted soil from the heart of the forest',
-                                         3,
                                          'common',
                                          2,
-                                         'health')
+                                         'health',
+                                         3)
 
             empty_list.append(small_mixed_herbs)
             empty_list.append(vial_of_moonlight)

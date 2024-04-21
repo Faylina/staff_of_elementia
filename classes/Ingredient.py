@@ -15,28 +15,28 @@ class Ingredient:
     """
 
     #------ CONSTRUCTOR --------#
-    def __init__(self, name=None, amount=None, rarity=None, effectiveness=None, effect=None):
+    def __init__(self, name=None, rarity=None, effectiveness=None, effect=None, amount=1):
         """
         Creates an Ingredient object with information about its amount, rarity and effectiveness.
 
         :param __name           :str    = None      name of the ingredient
-        :param __amount         :int    = None      amount of the same ingredient
         :param __rarity         :str    = None      the rarity of the ingredient in the forest
         :param __effectiveness  :int    = None      the effectiveness of this ingredient in potions
         :param __effect         :str    = None      effect of the ingredient
+        :param __amount         :int    = None      amount of the same ingredient
         """
         debug_functions.debugClass(self)
 
         if name != '' and name is not None:
             self.set_name(name)
-        if amount != '' and amount is not None:
-            self.set_amount(amount)
         if rarity != '' and rarity is not None:
             self.set_rarity(rarity)
         if effectiveness != '' and effectiveness is not None:
             self.set_effectiveness(effectiveness)
         if effect != '' and effect is not None:
             self.set_effect(effect)
+        if amount != '' and amount is not None:
+            self.set_amount(amount)
 
 
     # ------ GETTER & SETTER --------#
@@ -56,26 +56,6 @@ class Ingredient:
             return self.__name
         except AttributeError:
             print('ERROR: Failed to get ingredient name.')
-
-    # amount
-    def set_amount(self, value: int or str) -> None:
-        """Defines the amount of the ingredient."""
-        try:
-            value = int(value)
-        except TypeError:
-            print('The data format of the ingredient amount is not an integer.')
-        else:
-            if value < 0:
-                print('This is not a valid ingredient amount.')
-            else:
-                self.__amount = value
-
-    def get_amount(self) -> None or int:
-        """Fetches the amount of the ingredient."""
-        try:
-            return self.__amount
-        except AttributeError:
-            print('ERROR: Failed to get amount.')
 
     # rarity
     def set_rarity(self, value: str) -> None:
@@ -128,6 +108,26 @@ class Ingredient:
             return self.__effect
         except AttributeError:
             print('ERROR: Failed to get effect.')
+
+    # amount
+    def set_amount(self, value: int or str) -> None:
+        """Defines the amount of the ingredient."""
+        try:
+            value = int(value)
+        except TypeError:
+            print('The data format of the ingredient amount is not an integer.')
+        else:
+            if value < 0:
+                print('This is not a valid ingredient amount.')
+            else:
+                self.__amount = value
+
+    def get_amount(self) -> None or int:
+        """Fetches the amount of the ingredient."""
+        try:
+            return self.__amount
+        except AttributeError:
+            print('ERROR: Failed to get amount.')
 
 
     # ------ METHODS --------#
