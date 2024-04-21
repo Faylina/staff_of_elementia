@@ -11,17 +11,17 @@ from debugging import debug_functions
 
 
 #---------- CLASS -----------#
-class Spellbook():
+class Spellbook:
     """
         This class represents the characteristics of a spellbook.
     """
 
     # ------ CONSTRUCTOR --------#
-    def __init__(self, arsenal=[]):
+    def __init__(self, arsenal=None):
         """
         Creates a Spellbook object with information about its contents.
 
-        :param __arsenal    : list = []      list of spells in the spellbook
+        :param __arsenal    : list = None      list of spells in the spellbook
         """
         debug_functions.debugClass(self)
 
@@ -32,12 +32,10 @@ class Spellbook():
 
     def set_arsenal(self, value):
         """Creates the list of spells that the witch starts off with."""
-        # the arsenal needs to be empty when created
-        if len(value) != 0:
-            print('The inventory must be empty.')
-        # the witch starts the game with some basic ingredients that are added to her pouch
-        else:
+        if value is not None and type(value) == list:
             self.__arsenal = value
+        else:
+            self.__arsenal = []
 
     def get_arsenal(self):
         """Fetches the arsenal of the spellbook."""
@@ -57,7 +55,7 @@ class Spellbook():
             current_arsenal += f"\n\t{spell.get_name()} (Element: {spell.get_element()})"
         return current_arsenal
 
-    def addSpell(self, spell: Spell) -> None:
+    def addSpell(self, spell: Spell) -> str:
         """Adds a spell to the spellbook."""
         debug_functions.debugMethod(self)
         try:

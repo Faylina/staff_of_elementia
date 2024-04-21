@@ -65,4 +65,5 @@ class Cat(Pet):
 
     def sneakAttack(self):
         """Deals extra damage when used against unsuspecting enemies."""
+        # TODO: Write sneakAttack method for Cat
         pass

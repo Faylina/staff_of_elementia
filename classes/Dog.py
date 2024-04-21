@@ -69,4 +69,5 @@ class Dog(Pet):
             Allows the player to retrieve distant objects
             without having to physically go and grab them.
         """
+        # TODO: Write fetchItem method for Dog
         pass

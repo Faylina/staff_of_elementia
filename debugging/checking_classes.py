@@ -11,6 +11,7 @@ from classes.Dog import Dog
 from classes.Cat import Cat
 from classes.Spell import Spell
 from classes.Spellbook import Spellbook
+from classes.Witch import Witch
 
 
 
@@ -87,7 +88,7 @@ print('Testing invalid object: Add herb', pouch1.displayInventory())
 
 print('\n>>> Testing Pouch method removeIngredient():')
 pouch1.removeIngredient(herbs)
-print('Testing removing indredient:', pouch1.displayInventory())
+print('Testing removing ingredient:', pouch1.displayInventory())
 
 
 #---------- TESTING DOG ---------#
@@ -268,5 +269,129 @@ print('Filled Spellbook', spellbook1.displayArsenal())
 herb = 'herb'
 spellbook1.addSpell(herb)
 print('Testing invalid object: Add herb', spellbook1.displayArsenal())
+
+
+
+#---------- TESTING WITCH ---------#
+print('\n>>> Testing empty Witch object:')
+
+witch1 = Witch()
+
+print('\nEmpty Witch object:',
+      '\nFamiliar:',          witch1.get_familiar(),
+      '\nName:',              witch1.get_name(),
+      '\nMax HP:',            witch1.get_max_HP(),
+      '\nCurrent HP:',        witch1.get_current_HP(),
+      '\nMax MP:',            witch1.get_max_MP(),
+      '\nCurrent MP:',        witch1.get_current_MP(),
+      '\nGold:',              witch1.get_gold(),
+      '\nPouch:',             witch1.get_pouch(),
+      '\nSpellbook:',         witch1.get_spellbook(),
+      '\nAction list:',       witch1.get_action_list(),
+      '\nWitch Art:',         witch1.get_art())
+
+
+print('\n>>> Testing filled Witch object:')
+
+'''
+familiar       = None,
+name           = 'Asciri',
+max_HP         = 20,
+current_HP     = 20,
+max_MP         = 0,
+current_MP     = 0,
+gold           = 30,
+pouch          = Pouch(),
+spellbook      = Spellbook(),
+action_list    = []
+'''
+witch2 = Witch(dog2,
+               'Witchy',
+               30,
+               15,
+               15,
+               10,
+               250,
+               pouch2,
+               spellbook2,
+               [])
+
+print('\nFilled Witch object:',
+      '\nFamiliar:',          witch2.get_familiar(),
+      '\nName:',              witch2.get_name(),
+      '\nMax HP:',            witch2.get_max_HP(),
+      '\nCurrent HP:',        witch2.get_current_HP(),
+      '\nMax MP:',            witch2.get_max_MP(),
+      '\nCurrent MP:',        witch2.get_current_MP(),
+      '\nGold:',              witch2.get_gold(),
+      '\nPouch:',             witch2.get_pouch(),
+      '\nSpellbook:',         witch2.get_spellbook(),
+      '\nAction list:',       witch2.get_action_list(),
+      '\nWitch Art:',         witch2.get_art())
+
+
+print('\n>>> Testing faulty Witch object:')
+
+'''
+familiar       = None,
+name           = 'Asciri',
+max_HP         = 20,
+current_HP     = 20,
+max_MP         = 0,
+current_MP     = 0,
+gold           = 30,
+pouch          = Pouch(),
+spellbook      = Spellbook(),
+action_list    = []
+'''
+witch3 = Witch(pouch2,
+               12,
+               15,
+               -4,
+               -9,
+               '12',
+               -54,
+               dog2,
+               cat2,
+               ['herbs'])
+
+print('\nFaulty Witch object:',
+      '\nFamiliar:',          witch3.get_familiar(),
+      '\nName:',              witch3.get_name(),
+      '\nMax HP:',            witch3.get_max_HP(),
+      '\nCurrent HP:',        witch3.get_current_HP(),
+      '\nMax MP:',            witch3.get_max_MP(),
+      '\nCurrent MP:',        witch3.get_current_MP(),
+      '\nGold:',              witch3.get_gold(),
+      '\nPouch:',             witch3.get_pouch(),
+      '\nSpellbook:',         witch3.get_spellbook(),
+      '\nAction list:',       witch3.get_action_list(),
+      '\nWitch Art:',         witch3.get_art())
+
+print('\n>>> Testing Witch method checkInventory():')
+print("\nWitch's inventory:",  witch1.checkInventory())
+print("\nWitch's arsenal:",    witch1.readSpellbook())
+print("\nWitch's actions:",    witch1.listActions())
+print("\nAdd ingredient:",     witch1.addIngredientToPouch(ingredient2))
+print("\nWitch's inventory:",  witch1.checkInventory())
+print("\nAdd ingredient:",     witch1.removeIngredientFromPouch(ingredient2))
+print("\nWitch's inventory:",  witch1.checkInventory())
+print("\nLearn spell:",        witch1.learnSpell(spell2))
+print("\nWitch's arsenal:",    witch1.readSpellbook())
+print("\nAdopt pet:",          witch2.adoptPet())
+print("\nCall pet:",           witch2.callPet())
+print("\nLook at pet:",        witch2.lookAtPet())
+print("\nPet pet:",            witch2.petPet())
+print("\nPlay with pet:",      witch2.playWithPet())
+print("\nCheck pet's hunger:", witch2.checkPetsHunger())
+print("\nFeed pet:",           witch2.feedPet())
+print("\nCheck pet's hunger:", witch2.checkPetsHunger())
+print("\nBrew potion:",        witch2.brewPotion())
+print("\nCast spell:",         witch2.castSpell())
+print("\nWalk:",               witch2.walk())
+print("\nSearch:",             witch2.search())
+print("\nFlee:",               witch2.flee())
+
+
 
 

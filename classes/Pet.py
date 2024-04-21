@@ -47,13 +47,16 @@ class Pet(ABC):
     # name
     def set_name(self, value: str) -> None:
         """Defines the name of the pet and formats it."""
-        value = value.strip().title()
-        self._name = value
+        try:
+            value = value.strip().title()
+            self.__name = value
+        except AttributeError:
+            print('This is not a valid name.')
 
     def get_name(self) -> None or str:
         """Fetches the formatted name of the pet."""
         try:
-            return self._name
+            return self.__name
         except AttributeError:
             print('ERROR: Failed to get pet name.')
 
@@ -174,4 +177,4 @@ class Pet(ABC):
         if self.get_hungry() == True:
             return f"{self.get_name()} is hungry!"
         else:
-            return f"{self.get_name()} is satisfied!"
+            return f"{self.get_name()} is sated!"

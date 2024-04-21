@@ -11,17 +11,17 @@ from debugging import debug_functions
 
 
 #---------- CLASS -----------#
-class Pouch():
+class Pouch:
     """
         This class represents the characteristics of a pouch.
     """
 
     # ------ CONSTRUCTOR --------#
-    def __init__(self, inventory=[]):
+    def __init__(self, inventory=None):
         """
         Creates a Pouch object with information about its contents.
 
-        :param __inventory  :list = []      list of ingredients in the pouch
+        :param __inventory  :list = None      list of ingredients in the pouch
         """
         debug_functions.debugClass(self)
 
@@ -32,11 +32,14 @@ class Pouch():
 
     def set_inventory(self, value):
         """Creates the pouch that the witch starts off with."""
-        # the pouch needs to be empty when created
-        if len(value) != 0:
-            print('The inventory must be empty.')
-        # the witch starts the game with some basic ingredients that are added to her pouch
+
+        empty_list = []
+
+        if value is not None and type(value) == list:
+            self.__inventory = value
+
         else:
+            # the witch starts the game with some basic ingredients that are added to her pouch
             # name = None, amount = None, rarity = None, effectiveness = None, effect = None
             small_mixed_herbs = Ingredient('small pouch of mixed herbs',
                                                     3,
@@ -54,11 +57,11 @@ class Pouch():
                                          2,
                                          'health')
 
-            value.append(small_mixed_herbs)
-            value.append(vial_of_moonlight)
-            value.append(handful_of_soil)
+            empty_list.append(small_mixed_herbs)
+            empty_list.append(vial_of_moonlight)
+            empty_list.append(handful_of_soil)
 
-            self.__inventory = value
+            self.__inventory = empty_list
 
     def get_inventory(self):
         """Fetches the inventory of the pouch."""
@@ -78,7 +81,7 @@ class Pouch():
             current_inventory += f"\n\t{item.get_amount()}x {item.get_name()}"
         return current_inventory
 
-    def addIngredient(self, ingredient: Ingredient) -> None:
+    def addIngredient(self, ingredient: Ingredient) -> str:
         """Adds an ingredient to the pouch."""
         debug_functions.debugMethod(self)
         try:
@@ -91,7 +94,7 @@ class Pouch():
         except AttributeError:
             print('\nERROR: Ingredient could not be added.')
 
-    def removeIngredient(self, ingredient: Ingredient) -> None:
+    def removeIngredient(self, ingredient: Ingredient) -> str:
         """Removes an ingredient from the pouch."""
         debug_functions.debugMethod(self)
         try:

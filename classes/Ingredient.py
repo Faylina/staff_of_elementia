@@ -9,7 +9,7 @@ from debugging import debug_functions
 
 
 #---------- CLASS -----------#
-class Ingredient():
+class Ingredient:
     """
         This class represents the characteristics of all ingredients.
     """
@@ -44,8 +44,11 @@ class Ingredient():
     # name
     def set_name(self, value: str) -> None:
         """Defines the name of the ingredient and formats it."""
-        value = value.strip().title()
-        self.__name = value
+        try:
+            value = value.strip().title()
+            self.__name = value
+        except AttributeError:
+            print('This is not a valid name.')
 
     def get_name(self) -> None or str:
         """Fetches the formatted name of the ingredient."""
