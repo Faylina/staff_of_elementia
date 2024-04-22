@@ -13,6 +13,7 @@ from classes.Cat        import Cat
 from classes.Dog        import Dog
 from classes.Ingredient import Ingredient
 from classes.Spell      import Spell
+from classes.Potion      import Potion
 
 
 #---------- CLASS -----------#
@@ -256,10 +257,11 @@ class Witch:
         else:
 
             initial_action_list = ['List actions you can perform',
-                                   'Check inventory',
-                                   'Read spellbook',
-                                   'Brew potion',
-                                   'Cast spell',
+                                   'Check your inventory',
+                                   'Read your spellbook',
+                                   'Brew a potion',
+                                   'Drink a potion'
+                                   'Cast a spell',
                                    'Walk through the forest',
                                    'Search for ingredient',
                                    'Flee from opponent',
@@ -331,15 +333,15 @@ class Witch:
 
         return current_action
 
-    def addIngredientToPouch(self, ingredient: Ingredient) -> str:
-        """Adds an ingredient to the pouch."""
+    def addItemToPouch(self, item: Ingredient or Potion) -> str:
+        """Adds an item to the pouch."""
         debug_functions.debugMethod(self)
-        return self.get_pouch().addIngredient(ingredient)
+        return self.get_pouch().addItem(item)
 
-    def removeIngredientFromPouch(self, ingredient: Ingredient) -> str:
-        """Removes an ingredient from the pouch."""
+    def removeItemFromPouch(self, ingredient: Ingredient, amount: int) -> str:
+        """Removes an item from the pouch."""
         debug_functions.debugMethod(self)
-        return self.get_pouch().removeIngredient(ingredient)
+        return self.get_pouch().removeItem(ingredient, amount)
 
     def learnSpell(self, spell: Spell) -> str:
         """Adds a spell to the spellbook."""
@@ -381,8 +383,91 @@ class Witch:
         debug_functions.debugMethod(self)
         return self.get_familiar().checkIfHungry()
 
-    def brewPotion(self):
+    def brewPotion(self, ingredient1: Ingredient, ingredient2: Ingredient) -> str:
         debug_functions.debugMethod(self)
+
+        # healing ingredients
+        healing_ingredient1 = 'Small Pouch Of Mixed Herbs'
+
+        # restoring ingredients
+        restoring_ingredient1 = 'Vial Of Concentrated Moonlight Essence'
+
+        # ingredients for learning spells
+        spell_ingredient1 = 'Lumina Fungus'
+
+        # base ingredients
+        base_ingredient = 'Handful Of Enchanted Soil From The Heart Of The Forest'
+
+        if (
+                (ingredient1.get_name() == healing_ingredient1
+                 and ingredient2.get_name() == base_ingredient)
+                or
+                (ingredient1.get_name() == base_ingredient
+                 and ingredient2.get_name() == healing_ingredient1)
+        ):
+            # name = None, description = None, effect = None, effectiveness = None, element = None, amount = 1
+            new_potion = Potion('Greenwood Healer',
+                                'A thick, dark green liquid with small flecks of dirt suspended in it. '
+                                'This potion is said to contain the life force of the enchanted forest itself, '
+                                'granting the consumer a surge of energy and vitality.',
+                                'healing',
+                                ingredient1.get_effectiveness() + ingredient2.get_effectiveness(),
+                                'earth'
+                                )
+
+            return self.addItemToPouch(new_potion)
+
+        elif (
+                (ingredient1.get_name() == restoring_ingredient1
+                 and ingredient2.get_name() == base_ingredient)
+                or
+                (ingredient1.get_name() == base_ingredient
+                 and ingredient2.get_name() == restoring_ingredient1)
+        ):
+            # name = None, description = None, effect = None, effectiveness = None, element = None, amount = 1
+            new_potion = Potion('Lunar Restoration',
+                                'This potion glows softly with a pale blue light, '
+                                'and carries a faint scent of citrus. '
+                                'When consumed, it immediately restores a portion of your mana.',
+                                'restoring',
+                                ingredient1.get_effectiveness() + ingredient2.get_effectiveness(),
+                                'air'
+                                )
+
+            self.addItemToPouch(new_potion)
+
+        elif (
+                (ingredient1.get_name() == spell_ingredient1
+                 and ingredient2.get_name() == base_ingredient)
+                or
+                (ingredient1.get_name() == base_ingredient
+                 and ingredient2.get_name() == spell_ingredient1)
+        ):
+            # name=None, description=None, element=None, effect=None, effectiveness=None, cost=None
+            new_spell = Spell('Elemental Infusion',
+                              'This potion '
+                              'is said to imbue the drinker with the power of a thousand suns. '
+                              'Its golden, shimmering liquid appears to dance with the promise of magical knowledge. '
+                              'Consuming it grants the drinker the ability to learn a devastating spell '
+                              'to defeat their enemies.',
+                              'air',
+                              'offensive',
+                              ingredient1.get_effectiveness() + ingredient2.get_effectiveness(),
+                              5
+                              )
+
+            self.addItemToPouch(new_spell)
+
+    def drinkPotion(self, potion: Potion) -> None or str:
+        """Drink a potion."""
+        debug_functions.debugMethod(self)
+
+        if isinstance(potion, Potion):
+            # TODO: effect
+
+            return self.get_pouch().removeItem(potion)
+        else:
+            return 'This is not a potion.'
 
     def castSpell(self):
         debug_functions.debugMethod(self)

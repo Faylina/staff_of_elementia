@@ -7,6 +7,7 @@
 #---------- IMPORTS -----------#
 
 from classes.Ingredient import Ingredient
+from classes.Potion import Potion
 from debugging import debug_functions
 
 
@@ -21,7 +22,7 @@ class Pouch:
         """
         Creates a Pouch object with information about its contents.
 
-        :param __inventory  :list = None      list of ingredients in the pouch
+        :param __inventory  :dict = None      list of ingredients in the pouch
         """
         debug_functions.debugClass(self)
 
@@ -30,40 +31,16 @@ class Pouch:
 
     #------ GETTER & SETTER --------#
 
-    def set_inventory(self, value):
+    def set_inventory(self, value) -> None:
         """Creates the pouch that the witch starts off with."""
 
-        empty_list = []
-
-        if value is not None and type(value) == list:
+        if value is not None and type(value) == dict:
             self.__inventory = value
 
         else:
-            # the witch starts the game with some basic ingredients that are added to her pouch
-            # name = None, amount = None, rarity = None, effectiveness = None, effect = None
-            small_mixed_herbs = Ingredient( 'small pouch of mixed herbs',
-                                            'common',
-                                            1,
-                                            'health',
-                                            3)
-            vial_of_moonlight = Ingredient( 'vial of concentrated moonlight essence',
-                                            'common',
-                                            1,
-                                            'magic',
-                                            3)
-            handful_of_soil = Ingredient('handful of enchanted soil from the heart of the forest',
-                                         'common',
-                                         2,
-                                         'health',
-                                         3)
+            self.__inventory = {}
 
-            empty_list.append(small_mixed_herbs)
-            empty_list.append(vial_of_moonlight)
-            empty_list.append(handful_of_soil)
-
-            self.__inventory = empty_list
-
-    def get_inventory(self):
+    def get_inventory(self) -> dict:
         """Fetches the inventory of the pouch."""
         try:
             return self.__inventory
@@ -77,33 +54,77 @@ class Pouch:
         """Lists all ingredients in the pouch with their respective amounts."""
         debug_functions.debugMethod(self)
         current_inventory = '\nYour current inventory:'
-        for item in self.get_inventory():
+        for item in self.get_inventory().values():
             current_inventory += f"\n\t{item.get_amount()}x {item.get_name()}"
         return current_inventory
 
-    def addIngredient(self, ingredient: Ingredient) -> str:
-        """Adds an ingredient to the pouch."""
+    def addItem(self, item: Ingredient or Potion) -> str:
+        """Adds an item to the pouch."""
         debug_functions.debugMethod(self)
-        try:
-            # check if the object is actually an ingredient
-            if isinstance(ingredient, Ingredient):
-                self.get_inventory().append(ingredient)
-                return 'The item has been added to your inventory.'
-            else:
-                print('This is not an ingredient.')
-        except AttributeError:
-            print('\nERROR: Ingredient could not be added.')
 
-    def removeIngredient(self, ingredient: Ingredient) -> str:
-        """Removes an ingredient from the pouch."""
-        debug_functions.debugMethod(self)
         try:
-            # check if the object is actually an ingredient
-            if isinstance(ingredient, Ingredient):
-                self.get_inventory().remove(ingredient)
-                return 'The item has been removed from your inventory.'
+            # check if the object is actually an ingredient or potion
+            if isinstance(item, Ingredient) or isinstance(item, Potion):
+
+                new_item = item.get_name()
+
+                # check if the pouch already contains the item
+                if len(self.get_inventory()) > 0 and new_item in self.get_inventory():
+                    inventory_item = self.get_inventory()[item.get_name()]
+
+                    # increase the amount
+                    current_amount = inventory_item.get_amount()
+                    inventory_item.set_amount(current_amount + item.get_amount())
+                    return f"You have one more of {new_item} now."
+
+                else:
+                    self.get_inventory()[new_item] = item
+                    return f"{new_item} has been added to your inventory."
             else:
-                print('This is not an ingredient.')
+                print('This is not an ingredient nor a potion.')
         except AttributeError:
-            print('\nERROR: Ingredient could not be removed.')
+            print('\nERROR Attribute : Item could not be added.')
+
+    def removeItem(self, item: Ingredient or Potion, amount: int = 1) -> str:
+        """Removes an item from the pouch."""
+        debug_functions.debugMethod(self)
+
+        # check if the amount that is supposed to be removed is valid
+        try:
+            amount = int(amount)
+        except TypeError:
+            print('The format of the amount to be deleted must be an integer.')
+        else:
+            if amount < 1:
+                print('This is not a valid amount.')
+            else:
+
+                # removing the item
+                try:
+                    # check if the object is actually an ingredient
+                    if isinstance(item, Ingredient) or isinstance(item, Potion):
+
+                        item_to_remove = item.get_name()
+
+                        # check if the pouch already contains the item
+                        if len(self.get_inventory()) > 0 and item_to_remove in self.get_inventory():
+                            inventory_item = self.get_inventory()[item_to_remove]
+
+                            # decrease the amount
+                            current_amount = inventory_item.get_amount()
+                            inventory_item.set_amount(current_amount - amount)
+
+                            # remove the item if the amount has become 0
+                            print(inventory_item.get_amount())
+                            if inventory_item.get_amount() == 0:
+                                del self.get_inventory()[item_to_remove]
+                                return f"{item_to_remove} has been removed from your inventory."
+                            else:
+                                return f"You have one {item_to_remove} less now."
+                        else:
+                            print('You do not own this item.')
+                    else:
+                        print('This is not an ingredient nor a potion.')
+                except AttributeError:
+                    print('\nERROR: Item could not be removed.')
 

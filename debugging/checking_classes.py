@@ -61,16 +61,16 @@ print('\nFaulty Ingredient object:', ingredient3.checkEffect())
 
 
 #---------- TESTING POUCH ---------#
-print('\n>>> Testing filled Pouch object:')
-# inventory=[]
+print('\n>>> Testing empty Pouch object:')
+# inventory=None
 pouch1 = Pouch()
-print('\nFilled Pouch object:',
+print('\nEmpty Pouch object:',
       '\nInventory:', pouch1.get_inventory())
 
 
 print('\n>>> Testing faulty Pouch object:')
-# inventory=[]
-pouch2 = Pouch(['herbs'])
+# inventory=None
+pouch2 = Pouch({'herbs'})
 print('\nFaulty Pouch object:',
       '\nInventory:', pouch2.get_inventory())
 
@@ -78,17 +78,23 @@ print('\n>>> Testing Pouch method displayInventory():')
 print(pouch1.displayInventory())
 
 print('\n>>> Testing Pouch method addIngredient():')
-herbs = Ingredient('herbs', 'common', 2, 'magic')
-pouch1.addIngredient(herbs)
+# name=None, rarity=None, effectiveness=None, effect=None, amount=1
+herbs1 = Ingredient('herbs', 'common', 2, 'magic')
+herbs2 = Ingredient('herbs', 'common', 2, 'magic')
+herbs3 = Ingredient('herbs', 'common', 2, 'magic')
+pouch1.addItem(herbs1)
+pouch1.addItem(herbs2)
+pouch1.addItem(herbs3)
 print('Testing valid object: Add herbs', pouch1.displayInventory())
 
 herb = 'herb'
-pouch1.addIngredient(herb)
+pouch1.addItem(herb)
 print('Testing invalid object: Add herb', pouch1.displayInventory())
 
 
 print('\n>>> Testing Pouch method removeIngredient():')
-pouch1.removeIngredient(herbs)
+print(pouch1.removeItem(herbs1))
+print(pouch1.removeItem(herbs2, 2))
 print('Testing removing ingredient:', pouch1.displayInventory())
 
 
@@ -313,7 +319,7 @@ witch2 = Witch(dog2,
                15,
                10,
                250,
-               pouch2,
+               pouch1,
                spellbook2,
                [])
 
@@ -373,9 +379,9 @@ print('\n>>> Testing Witch method checkInventory():')
 print("\nWitch's inventory:",  witch1.checkInventory())
 print("\nWitch's arsenal:",    witch1.readSpellbook())
 print("\nWitch's actions:",    witch1.listActions())
-print("\nAdd ingredient:",     witch1.addIngredientToPouch(ingredient2))
+print("\nAdd ingredient:",     witch1.addItemToPouch(ingredient2))
 print("\nWitch's inventory:",  witch1.checkInventory())
-print("\nAdd ingredient:",     witch1.removeIngredientFromPouch(ingredient2))
+print("\nAdd ingredient:",     witch1.removeItemFromPouch(ingredient2,1))
 print("\nWitch's inventory:",  witch1.checkInventory())
 print("\nLearn spell:",        witch1.learnSpell(spell2))
 print("\nWitch's arsenal:",    witch1.readSpellbook())
@@ -387,7 +393,7 @@ print("\nPlay with pet:",      witch2.playWithPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
 print("\nFeed pet:",           witch2.feedPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
-print("\nBrew potion:",        witch2.brewPotion())
+#print("\nBrew potion:",        witch2.brewPotion())
 print("\nCast spell:",         witch2.castSpell())
 print("\nWalk:",               witch2.walk())
 print("\nSearch:",             witch2.search())
@@ -447,4 +453,31 @@ print('\nFaulty Potion object:', potion3.checkEffect())
 
 
 
+#---------- TESTING BREW POTION ---------#
 
+print('\n>>> Testing brewing Potions:')
+
+small_mixed_herbs = Ingredient( 'small pouch of mixed herbs',
+                                            'common',
+                                            1,
+                                            'health',
+                                            3)
+vial_of_moonlight = Ingredient( 'vial of concentrated moonlight essence',
+                                            'common',
+                                            1,
+                                            'magic',
+                                            3)
+handful_of_soil = Ingredient('handful of enchanted soil from the heart of the forest',
+                                         'common',
+                                         2,
+                                         'health',
+                                         3)
+
+witch2.addItemToPouch(small_mixed_herbs)
+witch2.addItemToPouch(vial_of_moonlight)
+witch2.addItemToPouch(handful_of_soil)
+print(witch2.checkInventory())
+witch2.brewPotion(small_mixed_herbs, handful_of_soil)
+witch2.brewPotion(vial_of_moonlight, handful_of_soil)
+witch2.brewPotion(small_mixed_herbs, handful_of_soil)
+print(witch2.checkInventory())
