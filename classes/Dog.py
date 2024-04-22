@@ -59,10 +59,12 @@ class Dog(Pet):
         your_dog += f"\nand is {self.get_age()} years old."
         return your_dog
 
+
     def givePaw(self) -> str:
         """Dog give paw."""
         debug_functions.debugMethod(self)
         return f"{self.get_name()} puts {self.get_pronoun()} paw in your hand, looking cheerful."
+
 
     def fetchItem(self):
         """

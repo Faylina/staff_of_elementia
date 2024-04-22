@@ -21,7 +21,7 @@ class Spellbook:
         """
         Creates a Spellbook object with information about its contents.
 
-        :param __arsenal    : list = None      list of spells in the spellbook
+        :param __arsenal    : dict = None      list of spells in the spellbook
         """
         debug_functions.debugClass(self)
 
@@ -32,10 +32,10 @@ class Spellbook:
 
     def set_arsenal(self, value):
         """Creates the list of spells that the witch starts off with."""
-        if value is not None and type(value) == list:
+        if value is not None and type(value) == dict:
             self.__arsenal = value
         else:
-            self.__arsenal = []
+            self.__arsenal = {}
 
     def get_arsenal(self):
         """Fetches the arsenal of the spellbook."""
@@ -51,9 +51,10 @@ class Spellbook:
         """Lists all spells in the spellbook."""
         debug_functions.debugMethod(self)
         current_arsenal = '\nYour current arsenal:'
-        for spell in self.get_arsenal():
+        for spell in self.get_arsenal().values():
             current_arsenal += f"\n\t{spell.get_name()} (Element: {spell.get_element()})"
         return current_arsenal
+
 
     def addSpell(self, spell: Spell) -> str:
         """Adds a spell to the spellbook."""
@@ -61,8 +62,19 @@ class Spellbook:
         try:
             # check if the object is actually a spell
             if isinstance(spell, Spell):
-                self.get_arsenal().append(spell)
-                return 'The spell has been added to your arsenal.'
+
+                new_spell = spell.get_name()
+
+                # check if the spellbook already contains the spell
+                if len(self.get_arsenal()) > 0 and new_spell not in self.get_arsenal():
+
+                    # add spell if the spell is not yet in the spellbook
+                    self.get_arsenal()[new_spell] = spell
+                    return f"{new_spell} has been added to your arsenal."
+                else:
+                    # add spell is the arsenal is empty
+                    self.get_arsenal()[new_spell] = spell
+                    return f"{new_spell} has been added to your arsenal."
             else:
                 print('This is not a spell.')
         except AttributeError:

@@ -58,10 +58,12 @@ class Cat(Pet):
         your_cat += f"\nand is {self.get_age()} years old."
         return your_cat
 
+
     def pet(self) -> str:
         """Pets the cat."""
         debug_functions.debugMethod(self)
         return f"{self.get_name()} rolls on {self.get_pronoun()} back, purring."
+
 
     def sneakAttack(self):
         """Deals extra damage when used against unsuspecting enemies."""

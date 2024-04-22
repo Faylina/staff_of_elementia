@@ -318,10 +318,12 @@ class Witch:
         debug_functions.debugMethod(self)
         return self.get_pouch().displayInventory()
 
+
     def readSpellbook(self) -> str:
         """Lists all spells in the spellbook."""
         debug_functions.debugMethod(self)
         return self.get_spellbook().displayArsenal()
+
 
     def listActions(self) -> str:
         """Lists all actions that the witch can perform."""
@@ -333,55 +335,66 @@ class Witch:
 
         return current_action
 
+
     def addItemToPouch(self, item: Ingredient or Potion) -> str:
         """Adds an item to the pouch."""
         debug_functions.debugMethod(self)
         return self.get_pouch().addItem(item)
+
 
     def removeItemFromPouch(self, ingredient: Ingredient, amount: int) -> str:
         """Removes an item from the pouch."""
         debug_functions.debugMethod(self)
         return self.get_pouch().removeItem(ingredient, amount)
 
+
     def learnSpell(self, spell: Spell) -> str:
         """Adds a spell to the spellbook."""
         debug_functions.debugMethod(self)
         return self.get_spellbook().addSpell(spell)
+
 
     def adoptPet(self) -> str:
         """Congratulates the player for adopting their new pet."""
         debug_functions.debugMethod(self)
         return self.get_familiar().adoptPet()
 
+
     def callPet(self) -> str:
         """Calls your pet."""
         debug_functions.debugMethod(self)
         return self.get_familiar().call()
+
 
     def lookAtPet(self) -> str:
         """Look at your pet."""
         debug_functions.debugMethod(self)
         return self.get_familiar().look()
 
+
     def petPet(self) -> str:
         """Pet your pet."""
         debug_functions.debugMethod(self)
         return self.get_familiar().pet()
+
 
     def playWithPet(self) -> str:
         """Play with your pet."""
         debug_functions.debugMethod(self)
         return self.get_familiar().play()
 
+
     def feedPet(self) -> str:
         """Feed your pet."""
         debug_functions.debugMethod(self)
         return self.get_familiar().feed()
 
+
     def checkPetsHunger(self) -> str:
         """Checks if your pet is hungry."""
         debug_functions.debugMethod(self)
         return self.get_familiar().checkIfHungry()
+
 
     def brewPotion(self, ingredient1: Ingredient, ingredient2: Ingredient) -> str:
         debug_functions.debugMethod(self)
@@ -458,6 +471,7 @@ class Witch:
 
             self.addItemToPouch(new_spell)
 
+
     def drinkPotion(self, potion: Potion) -> None or str:
         """Drink a potion."""
         debug_functions.debugMethod(self)
@@ -469,14 +483,18 @@ class Witch:
         else:
             return 'This is not a potion.'
 
+
     def castSpell(self):
         debug_functions.debugMethod(self)
+
 
     def walk(self):
         debug_functions.debugMethod(self)
 
+
     def search(self):
         debug_functions.debugMethod(self)
+
 
     def flee(self):
         debug_functions.debugMethod(self)

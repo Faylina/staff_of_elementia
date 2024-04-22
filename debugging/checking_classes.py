@@ -320,7 +320,7 @@ witch2 = Witch(dog2,
                10,
                250,
                pouch1,
-               spellbook2,
+               spellbook1,
                [])
 
 print('\nFilled Witch object:',
@@ -375,7 +375,7 @@ print('\nFaulty Witch object:',
       '\nAction list:',       witch3.get_action_list(),
       '\nWitch Art:',         witch3.get_art())
 
-print('\n>>> Testing Witch method checkInventory():')
+print('\n>>> Testing Witch methods:')
 print("\nWitch's inventory:",  witch1.checkInventory())
 print("\nWitch's arsenal:",    witch1.readSpellbook())
 print("\nWitch's actions:",    witch1.listActions())
@@ -393,7 +393,7 @@ print("\nPlay with pet:",      witch2.playWithPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
 print("\nFeed pet:",           witch2.feedPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
-#print("\nBrew potion:",        witch2.brewPotion())
+#print("\nBrew potion:",        witch2.brewPotion())    - testing if further below
 print("\nCast spell:",         witch2.castSpell())
 print("\nWalk:",               witch2.walk())
 print("\nSearch:",             witch2.search())

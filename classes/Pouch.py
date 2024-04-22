@@ -58,6 +58,7 @@ class Pouch:
             current_inventory += f"\n\t{item.get_amount()}x {item.get_name()}"
         return current_inventory
 
+
     def addItem(self, item: Ingredient or Potion) -> str:
         """Adds an item to the pouch."""
         debug_functions.debugMethod(self)
@@ -84,6 +85,7 @@ class Pouch:
                 print('This is not an ingredient nor a potion.')
         except AttributeError:
             print('\nERROR Attribute : Item could not be added.')
+
 
     def removeItem(self, item: Ingredient or Potion, amount: int = 1) -> str:
         """Removes an item from the pouch."""

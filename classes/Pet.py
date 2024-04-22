@@ -149,15 +149,18 @@ class Pet(ABC):
                                  f"Enjoy your time together!")
         return adoption_certificate
 
+
     def call(self) -> str:
         """Calls the pet."""
         debug_functions.debugMethod(self)
         return f"{self.get_name()} runs to you happily."
 
+
     def pet(self) -> str:
         """Pets the pet."""
         debug_functions.debugMethod(self)
         return f"{self.get_name()} rolls on {self.get_pronoun()} back, visibly enjoying your affection."
+
 
     def feed(self) -> str:
         """Feeds the pet."""
@@ -165,11 +168,13 @@ class Pet(ABC):
         self.set_hungry(False)
         return f"{self.get_name()} eats happily."
 
+
     def play(self) -> str:
         """Plays with the pet."""
         debug_functions.debugMethod(self)
         self.set_hungry(True)
         return f"{self.get_name()} plays with you, jumping around in excitement."
+
 
     def checkIfHungry(self) -> str:
         """Checks if the pet is hungry."""
