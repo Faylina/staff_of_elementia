@@ -81,7 +81,7 @@ class Ingredient:
         except ValueError:
             print('The data format of the ingredient effectiveness is not an integer.')
         else:
-            if value < 1 or value > 10:
+            if value < 1:
                 print('This is not a valid ingredient effectiveness.')
             else:
                 self.__effectiveness = value
@@ -91,13 +91,13 @@ class Ingredient:
         try:
             return self.__effectiveness
         except AttributeError:
-            print('ERROR: Failed to get effectiveness.')
+            print('ERROR: Failed to get ingredient effectiveness.')
 
     # effect
     def set_effect(self, value: str) -> None:
         """Defines the effect of the ingredient."""
         value = value.strip().lower()
-        if value != 'health' and value != 'magic':
+        if value != 'health' and value != 'magic' and value != 'spell' and value != 'base':
             print('This is not a valid effect of a ingredient.')
         else:
             self.__effect = value

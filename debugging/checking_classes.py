@@ -459,25 +459,59 @@ print('\n>>> Testing brewing Potions:')
 
 small_mixed_herbs = Ingredient( 'small pouch of mixed herbs',
                                             'common',
-                                            1,
+                                            100,
                                             'health',
                                             3)
 vial_of_moonlight = Ingredient( 'vial of concentrated moonlight essence',
                                             'common',
-                                            1,
+                                            2,
                                             'magic',
                                             3)
 handful_of_soil = Ingredient('handful of enchanted soil from the heart of the forest',
                                          'common',
                                          2,
-                                         'health',
+                                         'base',
+                                         3)
+lumina_fungus = Ingredient('lumina fungus',
+                                         'legendary',
+                                         1,
+                                         'spell',
                                          3)
 
 witch2.addItemToPouch(small_mixed_herbs)
 witch2.addItemToPouch(vial_of_moonlight)
 witch2.addItemToPouch(handful_of_soil)
+witch2.addItemToPouch(lumina_fungus)
 print(witch2.checkInventory())
-witch2.brewPotion(small_mixed_herbs, handful_of_soil)
-witch2.brewPotion(vial_of_moonlight, handful_of_soil)
-witch2.brewPotion(small_mixed_herbs, handful_of_soil)
+potion1 = witch2.brewPotion(small_mixed_herbs, handful_of_soil)
+potion2 = witch2.brewPotion(vial_of_moonlight, handful_of_soil)
+potion3 = witch2.brewPotion(small_mixed_herbs, handful_of_soil)
+potion4 = witch2.brewPotion(lumina_fungus, handful_of_soil)
+potion5 = witch2.brewPotion(lumina_fungus, handful_of_soil)
+print(witch2.checkInventory())
+
+print('\n>>> Testing healing Potion:')
+print('\nMax HP: ', witch2.get_max_HP())
+print('\nCurrent HP: ', witch2.get_current_HP())
+witch2.drinkPotion(potion1)
+print(witch2.checkInventory())
+print('\nMax HP: ', witch2.get_max_HP())
+print('\nCurrent HP: ', witch2.get_current_HP())
+
+print('\n>>> Testing restoring Potion:')
+print('\nMax MP: ', witch2.get_max_MP())
+print('\nCurrent MP: ', witch2.get_current_MP())
+witch2.drinkPotion(potion2)
+print(witch2.checkInventory())
+print('\nMax MP: ', witch2.get_max_MP())
+print('\nCurrent MP: ', witch2.get_current_MP())
+
+print('\n>>> Testing learning Potion:')
+print(witch2.checkInventory())
+print(witch2.readSpellbook())
+spell1 = witch2.drinkPotion(potion4)
+print(witch2.readSpellbook())
+print(witch2.checkInventory())
+spell2 = witch2.drinkPotion(potion5)
+print(witch2.readSpellbook())
 print(witch2.checkInventory())

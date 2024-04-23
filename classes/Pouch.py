@@ -117,7 +117,6 @@ class Pouch:
                             inventory_item.set_amount(current_amount - amount)
 
                             # remove the item if the amount has become 0
-                            print(inventory_item.get_amount())
                             if inventory_item.get_amount() == 0:
                                 del self.get_inventory()[item_to_remove]
                                 return f"{item_to_remove} has been removed from your inventory."

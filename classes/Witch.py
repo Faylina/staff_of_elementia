@@ -342,7 +342,7 @@ class Witch:
         return self.get_pouch().addItem(item)
 
 
-    def removeItemFromPouch(self, ingredient: Ingredient, amount: int) -> str:
+    def removeItemFromPouch(self, ingredient: Ingredient, amount: int = 1) -> str:
         """Removes an item from the pouch."""
         debug_functions.debugMethod(self)
         return self.get_pouch().removeItem(ingredient, amount)
@@ -396,7 +396,7 @@ class Witch:
         return self.get_familiar().checkIfHungry()
 
 
-    def brewPotion(self, ingredient1: Ingredient, ingredient2: Ingredient) -> str:
+    def brewPotion(self, ingredient1: Ingredient, ingredient2: Ingredient) -> Potion:
         debug_functions.debugMethod(self)
 
         # healing ingredients
@@ -428,7 +428,10 @@ class Witch:
                                 'earth'
                                 )
 
-            return self.addItemToPouch(new_potion)
+            self.addItemToPouch(new_potion)
+            self.removeItemFromPouch(ingredient1)
+            self.removeItemFromPouch(ingredient2)
+            return new_potion
 
         elif (
                 (ingredient1.get_name() == restoring_ingredient1
@@ -448,6 +451,9 @@ class Witch:
                                 )
 
             self.addItemToPouch(new_potion)
+            self.removeItemFromPouch(ingredient1)
+            self.removeItemFromPouch(ingredient2)
+            return new_potion
 
         elif (
                 (ingredient1.get_name() == spell_ingredient1
@@ -456,20 +462,23 @@ class Witch:
                 (ingredient1.get_name() == base_ingredient
                  and ingredient2.get_name() == spell_ingredient1)
         ):
-            # name=None, description=None, element=None, effect=None, effectiveness=None, cost=None
-            new_spell = Spell('Elemental Infusion',
+            # name = None, description = None, effect = None, effectiveness = None, element = None, amount = 1
+            new_potion = Potion('Elemental Infusion',
                               'This potion '
                               'is said to imbue the drinker with the power of a thousand suns. '
                               'Its golden, shimmering liquid appears to dance with the promise of magical knowledge. '
                               'Consuming it grants the drinker the ability to learn a devastating spell '
                               'to defeat their enemies.',
-                              'air',
-                              'offensive',
-                              ingredient1.get_effectiveness() + ingredient2.get_effectiveness(),
-                              5
+                              'learning',
+                              1,
+                              'air'
                               )
 
-            self.addItemToPouch(new_spell)
+            self.addItemToPouch(new_potion)
+            self.removeItemFromPouch(ingredient1)
+            self.removeItemFromPouch(ingredient2)
+            return new_potion
+
 
 
     def drinkPotion(self, potion: Potion) -> None or str:
@@ -477,15 +486,79 @@ class Witch:
         debug_functions.debugMethod(self)
 
         if isinstance(potion, Potion):
-            # TODO: effect
+            if potion.get_effect() == 'healing':
 
-            return self.get_pouch().removeItem(potion)
+                current_HP_amount = self.get_current_HP()
+                potion_effect = potion.get_effectiveness()
+                max_HP = self.get_max_HP()
+
+                # if adding the HP would exceed the max HP, set current HP to max HP
+                if (current_HP_amount + potion_effect) >= max_HP:
+                    self.set_current_HP(max_HP)
+
+                # otherwise increase the current HP by the additional amount
+                else:
+                    self.set_current_HP(current_HP_amount + potion_effect)
+
+            elif potion.get_effect() == 'restoring':
+
+                current_MP_amount = self.get_current_MP()
+                potion_effect = potion.get_effectiveness()
+                max_MP = self.get_max_MP()
+
+                # if adding the MP would exceed the max MP, set current MP to max MP
+                if (current_MP_amount + potion_effect) >= max_MP:
+                    self.set_current_MP(max_MP)
+
+                # otherwise increase the current MP by the additional amount
+                else:
+                    self.set_current_MP(current_MP_amount + potion_effect)
+
+            elif potion.get_effect() == 'learning':
+                # create a new Spell
+                # name = None, description = None, element = None, effect = None, effectiveness = None, cost = None
+                new_spell = Spell('Wind Gust',
+                                  'Wind Gust creates a powerful gust of wind that knocks back enemies '
+                                  'and disorients them.',
+                                  'air',
+                                  'offensive',
+                                  20,
+                                  5
+                                  )
+
+                self.learnSpell(new_spell)
+                self.get_pouch().removeItem(potion)
+                return new_spell
+
+            self.get_pouch().removeItem(potion)
         else:
             return 'This is not a potion.'
 
 
-    def castSpell(self):
+    def castSpell(self, spell: Spell):
         debug_functions.debugMethod(self)
+
+        if spell.get_effect() == 'offensive':
+            # TODO: add spell effect
+            pass
+
+        elif spell.get_effect() == 'defensive':
+            # TODO: add spell effect
+            pass
+
+        elif spell.get_effect() == 'healing':
+
+            current_HP_amount = self.get_current_HP()
+            spell_effect = spell.get_effectiveness()
+            max_HP = self.get_max_HP()
+
+            # if adding the HP would exceed the max HP, set current HP to max HP
+            if (current_HP_amount + spell_effect) >= max_HP:
+                self.set_current_HP(max_HP)
+
+            # otherwise increase the current HP by the additional amount
+            else:
+                self.set_current_HP(current_HP_amount + spell_effect)
 
 
     def walk(self):
