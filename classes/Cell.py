@@ -2,7 +2,7 @@
 #------------ CELL CLASS ---------------#
 #---------------------------------------#
 
-"""The class for the creation of a cell in the world's grid."""
+"""The class for the creation of a cell in the forest's grid."""
 
 #---------- IMPORTS -----------#
 from debugging import debug_functions
@@ -11,13 +11,14 @@ from debugging import debug_functions
 #---------- CLASS -----------#
 class Cell:
     """
-        This class represents a cell in a world's grid.
+        This class represents a cell in a forest's grid.
     """
 
     #------ CONSTRUCTOR --------#
     def __init__(self, coordinates=None, level=None, content=None, occupied=False, env_descriptions=None):
         """
-        Creates an Ingredient object with information about its amount, rarity and effectiveness.
+        Creates a Cell object with information about its coordinates, level, content, whether the
+         witch is currently there and a list of descriptions of all cell's environments.
 
         :param __coordinates      :tuple                          = None    The coordinates of the cell on the grid
         :param __level            :int                            = None    level of the world
@@ -25,7 +26,6 @@ class Cell:
                                                                             (ingredient, enemy, scenery)
         :param __occupied         :bool                           = False   True if the witch is in this Cell
         :param __env_descriptions :dict                           = None    List of all description of the environment
-
         """
         debug_functions.debugClass(self)
 

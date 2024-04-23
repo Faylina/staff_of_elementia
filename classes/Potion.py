@@ -17,8 +17,8 @@ class Potion:
     #------ CONSTRUCTOR --------#
     def __init__(self, name=None, description=None, effect=None, effectiveness=None, element=None, amount=1):
         """
-        Creates a Spell object with information about its name, description, amount, element,
-        effect and effectiveness.
+        Creates a Potion object with information about its name, description, effect, effectiveness,
+        element and amount.
 
         :param __name           :str    = None      name of the potion
         :param __description    :int    = None      what does the potion do?

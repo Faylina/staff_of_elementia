@@ -14,6 +14,7 @@ from classes.Spellbook import Spellbook
 from classes.Witch import Witch
 from classes.Potion import Potion
 from classes.Cell import Cell
+from classes.Grid import Grid
 
 
 
@@ -562,3 +563,29 @@ print('\nCell enter():', cell2.get_occupied())
 cell2.leave()
 print('\nCell leave():', cell2.get_occupied())
 print('\nCell describeEnvironment():', cell2.describeEnvironment())
+
+
+#---------- TESTING GRID ---------#
+print('\n>>> Testing empty Grid object:')
+# grid=None
+grid1 = Grid()
+print('\nEmpty Grid object:',
+      '\nGrid:', grid1.get_grid())
+
+
+print('\n>>> Testing faulty Grid object:')
+# grid=None
+grid2 = Grid({'herbs'})
+print('\nFaulty Grid object:',
+      '\nGrid:', grid2.get_grid())
+
+print('\n>>> Testing Grid method addCell():')
+grid1.addCell(cell2)
+
+print('\n>>> Testing Grid method displayGrid():')
+print(grid1.displayGrid())
+
+herb = 'herb'
+grid1.addCell(herb)
+print('Testing invalid Cell object: Add herb', grid1.displayGrid())
+
