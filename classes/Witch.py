@@ -535,7 +535,7 @@ class Witch:
             return 'This is not a potion.'
 
 
-    def castSpell(self, spell: Spell):
+    def castSpell(self, spell: Spell) -> str:
         debug_functions.debugMethod(self)
 
         if spell.get_effect() == 'offensive':
@@ -547,18 +547,33 @@ class Witch:
             pass
 
         elif spell.get_effect() == 'healing':
+            # spell cost
+            current_MP_amount = self.get_current_MP()
+            spell_cost = spell.get_cost()
 
-            current_HP_amount = self.get_current_HP()
-            spell_effect = spell.get_effectiveness()
-            max_HP = self.get_max_HP()
+            # if there is not enough mana to cast the spell
+            if (current_MP_amount - spell_cost) < 0:
+                return "You don't have enough mana to cast this spell."
 
-            # if adding the HP would exceed the max HP, set current HP to max HP
-            if (current_HP_amount + spell_effect) >= max_HP:
-                self.set_current_HP(max_HP)
-
-            # otherwise increase the current HP by the additional amount
+            # if there is enough mana, use spell
             else:
-                self.set_current_HP(current_HP_amount + spell_effect)
+                self.set_current_MP(current_MP_amount - spell_cost)
+
+                # healing effect
+                current_HP_amount = self.get_current_HP()
+                spell_effect = spell.get_effectiveness()
+                max_HP = self.get_max_HP()
+
+                # if adding the HP would exceed the max HP, set current HP to max HP
+                if (current_HP_amount + spell_effect) >= max_HP:
+                    self.set_current_HP(max_HP)
+
+                # otherwise increase the current HP by the additional amount
+                else:
+                    self.set_current_HP(current_HP_amount + spell_effect)
+
+                return (f'You have healed {spell_effect} HP. Currently you have {self.get_current_HP()} HP '
+                        f'of {self.get_max_HP()} HP.')
 
 
     def walk(self):
