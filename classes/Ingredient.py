@@ -79,7 +79,7 @@ class Ingredient:
         try:
             value = int(value)
         except ValueError:
-            print('The data format of the ingredient effectiveness is not an integer.')
+            print('The format of the ingredient effectiveness must be an integer.')
         else:
             if value < 1:
                 print('This is not a valid ingredient effectiveness.')
@@ -107,7 +107,7 @@ class Ingredient:
         try:
             return self.__effect
         except AttributeError:
-            print('ERROR: Failed to get effect.')
+            print('ERROR: Failed to get effect of the ingredient.')
 
     # amount
     def set_amount(self, value: int or str) -> None:

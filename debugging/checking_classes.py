@@ -13,6 +13,7 @@ from classes.Spell import Spell
 from classes.Spellbook import Spellbook
 from classes.Witch import Witch
 from classes.Potion import Potion
+from classes.Cell import Cell
 
 
 
@@ -393,8 +394,8 @@ print("\nPlay with pet:",      witch2.playWithPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
 print("\nFeed pet:",           witch2.feedPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
-#print("\nBrew potion:",        witch2.brewPotion())    - testing if further below
-print("\nCast spell:",         witch2.castSpell())
+#print("\nBrew potion:",        witch2.brewPotion())    - testing further below
+#print("\nCast spell:",         witch2.castSpell())     - testing further below
 print("\nWalk:",               witch2.walk())
 print("\nSearch:",             witch2.search())
 print("\nFlee:",               witch2.flee())
@@ -515,3 +516,49 @@ print(witch2.checkInventory())
 spell2 = witch2.drinkPotion(potion5)
 print(witch2.readSpellbook())
 print(witch2.checkInventory())
+
+
+#---------- TESTING CELL ---------#
+print('\n>>> Testing empty Cell object:')
+
+cell1 = Cell()
+
+print('\nEmpty Cell object:',
+      '\nCoordinates:',             cell1.get_coordinates(),
+      '\nLevel:',                   cell1.get_level(),
+      '\nContent:',                 cell1.get_content(),
+      '\nOccupied:',                cell1.get_occupied(),
+      '\nEnvironment Description:', cell1.get_env_descriptions())
+
+
+print('\n>>> Testing filled Cell object:')
+
+# coordinates=None, level=None, content=None, occupied=False, env_descriptions=None
+cell2 = Cell((1,1), 1, 'scenery', True)
+
+print('\nFilled Cell object:',
+      '\nCoordinates:',             cell2.get_coordinates(),
+      '\nLevel:',                   cell2.get_level(),
+      '\nContent:',                 cell2.get_content(),
+      '\nOccupied:',                cell2.get_occupied(),
+      '\nEnvironment Description:', cell2.get_env_descriptions())
+
+
+print('\n>>> Testing faulty Cell object:')
+
+# name=None, rarity=None, effectiveness=None, effect=None, amount=None
+cell3 = Cell('dried herbs', 'Commo', '12')
+
+print('\nFaulty Cell object:',
+      '\nCoordinates:',             cell3.get_coordinates(),
+      '\nLevel:',                   cell3.get_level(),
+      '\nContent:',                 cell3.get_content(),
+      '\nOccupied:',                cell3.get_occupied(),
+      '\nEnvironment Description:', cell3.get_env_descriptions())
+
+print('\n>>> Testing Cell methods:')
+cell2.enter()
+print('\nCell enter():', cell2.get_occupied())
+cell2.leave()
+print('\nCell leave():', cell2.get_occupied())
+print('\nCell describeEnvironment():', cell2.describeEnvironment())
