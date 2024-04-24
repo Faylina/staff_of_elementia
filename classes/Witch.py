@@ -25,6 +25,7 @@ class Witch:
 
     # ------ CONSTRUCTOR --------#
     def __init__(self,
+                 forest         = Forest(),
                  familiar       = None,
                  name           = 'Asciri',
                  max_HP         = 20,
@@ -34,12 +35,12 @@ class Witch:
                  gold           = 30,
                  pouch          = Pouch(),
                  spellbook      = Spellbook(),
-                 forest         = Forest(),
                  action_list    = None
                  ):
         """
         Creates a Witch object with information about her traits and possessions.
 
+        :param __forest      : Forest               = Forest()     the forest that the witch is currently in
         :param __familiar    : Cat or Dog or str    = None         pet of the witch
         :param __name        : str                  = 'Asciri'     name of the witch
         :param __max_HP      : int                  = 20           maximum health points of the witch
@@ -49,12 +50,13 @@ class Witch:
         :param __gold        : int                  = 30           gold in possession of the witch
         :param __pouch       : Pouch                = Pouch()      inventory of the witch
         :param __spellbook   : Spellbook            = Spellbook()  spellbook of the witch
-        :param __forest      : Forest               = Forest()     the forest that the witch is currently in
         :param __action_list : list                 = None         list of currently available actions
         :param __witch_art   : str                  = string       image of the witch
         """
         debug_functions.debugClass(self)
 
+        if forest != '' and forest is not None:
+            self.set_forest(forest)
         if familiar != '' and familiar is not None:
             self.set_familiar(familiar)
         if name != '' and name is not None:
@@ -73,13 +75,26 @@ class Witch:
             self.set_pouch(pouch)
         if spellbook != '' and spellbook is not None:
             self.set_spellbook(spellbook)
-        if forest != '' and forest is not None:
-            self.set_forest(forest)
 
         self.set_action_list(action_list)
         self.set_art()
 
     # ------ GETTER & SETTER --------#
+
+    # forest
+    def set_forest(self, value: Forest) -> None:
+
+        if isinstance(value, Forest):
+            self.__forest = value
+        else:
+            print('This is not a forest.')
+
+    def get_forest(self) -> Forest:
+        """Fetches the forest that the witch is in."""
+        try:
+            return self.__forest
+        except AttributeError:
+            print('ERROR: Failed to get the forest.')
 
     # familiar
     def set_familiar(self, value: Cat or Dog or None) -> None:
@@ -251,21 +266,6 @@ class Witch:
         except AttributeError:
             print('ERROR: Failed to get the spellbook.')
 
-    # forest
-    def set_forest(self, value: Forest) -> None:
-
-        if isinstance(value, Forest):
-            self.__forest = value
-        else:
-            print('This is not a forest.')
-
-    def get_forest(self) -> Forest:
-        """Fetches the forest that the witch is in."""
-        try:
-            return self.__forest
-        except AttributeError:
-            print('ERROR: Failed to get the forest.')
-
 
     # action_list
     def set_action_list(self, value):
@@ -372,6 +372,50 @@ class Witch:
         """Adds a spell to the spellbook."""
         debug_functions.debugMethod(self)
         return self.get_spellbook().addSpell(spell)
+
+
+    @staticmethod
+    def choosePet():
+        pet_choice = input('\nWhat kind of pet would you like to adopt? (cat/dog)\n')
+        pet_choice = pet_choice.strip().lower()
+        debug_functions.debugVariable('pet_choice', pet_choice)
+
+        pet_sex = input('\nWhat would you like the sex of your pet to be? (male/female)\n')
+        debug_functions.debugVariable('pet_sex', pet_sex)
+
+        pet_name = input('\nWhat would you like to name your pet?\n')
+        debug_functions.debugVariable('pet_name', pet_name)
+
+        pet_age = input('\nHow old would you prefer your pet to be?\n')
+        debug_functions.debugVariable('pet_age', pet_age)
+
+        pet_color = input('\nWhat color would you prefer your pet to be?\n')
+        debug_functions.debugVariable('pet_color', pet_color)
+
+        # creating a pet
+        if pet_choice == 'cat':
+            # name = None, age = None, color = None, sex = None
+            pet = Cat(pet_name, pet_age, pet_color, pet_sex)
+            debug_functions.debugVariable('pet.look()', pet.look())
+
+        elif pet_choice == 'dog':
+            # name = None, age = None, color = None, sex = None
+            pet = Dog(pet_name, pet_age, pet_color, pet_sex)
+            debug_functions.debugVariable('pet.look()', pet.look())
+
+        else:
+            print('There are no pets of this kind for adoption.')
+            pet = None
+
+        if pet is not None:
+            if (    pet.get_name()  is None or
+                    pet.get_age()   is None or
+                    pet.get_color() is None or
+                    pet.get_sex()   is None):
+
+                pet = None
+
+        return pet
 
 
     def adoptPet(self) -> str:

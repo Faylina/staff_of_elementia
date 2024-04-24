@@ -5,8 +5,8 @@
 """The parent class for the adoption of a dog or cat"""
 
 #---------- IMPORTS -----------#
-from abc import ABC, abstractmethod
-from debugging import debug_functions
+from abc            import ABC, abstractmethod
+from debugging      import debug_functions
 
 
 #---------- CLASS -----------#
@@ -21,12 +21,12 @@ class Pet(ABC):
         """
         Creates a Pet object with information about its traits.
 
-        :param _name: str    = None      name of the pet
-        :param _age: int     = None      age of the pet
-        :param _color: str   = None      color of the pet's fur
-        :param _sex: str     = None      the pet's sex
-        :param _hungry: bool = True      indicates whether the pet is hungry
-        :param _pronoun: str = None      pronoun to use for the pet
+        :param _name    : str    = None      name of the pet
+        :param _age     : int    = None      age of the pet
+        :param _color   : str    = None      color of the pet's fur
+        :param _sex     : str    = None      the pet's sex
+        :param _hungry  : bool   = True      indicates whether the pet is hungry
+        :param _pronoun : str    = None      pronoun to use for the pet
         """
         debug_functions.debugClass(self)
 
@@ -65,7 +65,7 @@ class Pet(ABC):
         """Defines the age of the pet."""
         try:
             value = int(value)
-        except TypeError:
+        except ValueError:
             print("The pet's age is not an integer.")
         else:
             if value < 0:
@@ -145,7 +145,7 @@ class Pet(ABC):
         adoption_certificate += "\nThis little friend, is now yours forever,"
         adoption_certificate += "\nsharing the adventure and growing with you every step of the way. \nCongrats!"
         adoption_certificate += (f"\n{self.get_name()} is {self.get_sex()} and is currently {self.get_age()} years old."
-                                 f"\n{self.get_pronoun().title()} fur is beautifully {self.get_color()}. "
+                                 f"\n{self.get_pronoun().title()} fur is shiny {self.get_color()}. "
                                  f"Enjoy your time together!")
         return adoption_certificate
 
@@ -183,3 +183,4 @@ class Pet(ABC):
             return f"{self.get_name()} is hungry!"
         else:
             return f"{self.get_name()} is sated!"
+

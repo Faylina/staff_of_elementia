@@ -7,11 +7,12 @@
 
 #---------- IMPORTS -----------#
 
-from debugging      import debug_functions
-from texts          import gameplay_snippets
-from classes.Game   import Game
-from classes.Player import Player
-from classes.Forest import Forest
+from debugging          import debug_functions
+from texts              import gameplay_snippets
+from classes.Game       import Game
+from classes.Player     import Player
+from classes.Forest     import Forest
+from classes.Witch      import Witch
 
 #---------- INTRO ---------#
 
@@ -59,3 +60,53 @@ else:
         # grid_layout = None, position = None, grid = None)
         forest = Forest('3x3', [2, 2], grid)
         debug_functions.debugVariable('forest.get_grid()', forest.get_grid())
+
+
+        # ---------- CREATING THE WITCH AND HER PET ---------#
+
+        debug_functions.debugProcess('Creating the witch and her pet')
+
+        # player customization of the witch and her pet
+        print("\nLet's transform you into a witch!")
+        witch_name = input('\nWhat would you like to be called as a witch?\n')
+        debug_functions.debugVariable('witch_name', witch_name)
+
+        pet_lover = input('\nWould you like to adopt a pet? (y/n)\n')
+        pet_lover = pet_lover.strip().lower()
+        debug_functions.debugVariable('pet_lover', pet_lover)
+
+        if pet_lover == 'y':
+            pet = None
+            while pet == None:
+                pet = Witch.choosePet()
+        else:
+            pet = None
+
+        # creating a witch
+        '''
+         forest         = Forest(),
+         familiar       = None,
+         name           = 'Asciri',
+         max_HP         = 20,
+         current_HP     = 20,
+         max_MP         = 0,
+         current_MP     = 0,
+         gold           = 30,
+         pouch          = Pouch(),
+         spellbook      = Spellbook(),
+         action_list    = None
+        '''
+
+        witch = Witch(forest, pet, witch_name)
+        debug_functions.debugVariable('witch.get_art()', witch.get_art())
+
+        print(f'\nCongratulations! You were reborn as a witch named {witch.get_name()}!')
+        print(witch.get_art())
+        if witch.get_familiar() is not None:
+            print(witch.adoptPet())
+
+
+
+
+
+

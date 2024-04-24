@@ -102,8 +102,6 @@ class Forest:
 
         current_cell = tuple(self.get_position())
         grid_dict = self.get_grid().get_grid()
-        print(current_cell)
-        print(grid_dict)
 
         if current_cell in grid_dict:
             grid_dict[current_cell].enter()
