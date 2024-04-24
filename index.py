@@ -115,7 +115,7 @@ else:
         forest_confirmation = input('\nWould you like to enter the forest now? (y/n)\n')
 
         if forest_confirmation != 'y':
-            print(f"Farewell, {player_name}. Come back when you're ready to tackle this challenge.")
+            print(f"Goodbye, {player_name}. Come back when you're ready to tackle this challenge.")
         else:
 
             # ---------- ENTERING THE FOREST ---------#
@@ -162,19 +162,14 @@ else:
                     else:
                         method_name = method
 
-                    # create a reference of the method if it's not a pet interaction
-                    if method_name != 'interactWithPet':
-                        method_reference = lambda method: getattr(witch, method)
-                        method = method_reference(method_name)
-
-                        # call the method
-                        if args is None:
-                            print(method())
-                        else:
-                            print(method(args))
+                    # ---------- QUIT GAME ---------#
+                    if method_name == 'quit':
+                        game.quitGame()
+                        print(f"Goodbye, {player_name}. Come back when you're ready to continue.")
 
                     # ---------- PRESENT PET OPTIONS ---------#
-                    else:
+
+                    elif method_name == 'interactWithPet':
                         print(f'\nHow would you like to interact with {witch.get_familiar().get_name()}?')
                         for string in options_for_pet_interaction:
                             print(string)
@@ -186,17 +181,31 @@ else:
                         # get the chosen method from the interactions list
                         method = pet_interactions[interaction]
 
-                        # create a reference of the interaction method
+                        # ---------- QUIT GAME ---------#
+                        if interaction == 'quit':
+                            game.quitGame()
+                            print(f"Goodbye, {player_name}. Come back when you're ready to continue.")
+
+                        # ---------- PET INTERACTIONS ---------#
+                        else:
+                            # create a reference of the interaction method
+                            method_reference = lambda method: getattr(witch, method)
+                            method = method_reference(method)
+
+                            # call the method
+                            print(method())
+
+                    # ---------- EXECUTE OTHER ACTIONS ---------#
+                    else:
+                        # create a reference of the method if it's not a pet interaction
                         method_reference = lambda method: getattr(witch, method)
-                        method = method_reference(method)
+                        method = method_reference(method_name)
 
                         # call the method
-                        print(method())
+                        if args is None:
+                            print(method())
+                        else:
+                            print(method(args))
                 except KeyError:
                     print('This is not a valid action.')
-
-
-
-
-
 

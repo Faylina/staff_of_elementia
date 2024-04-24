@@ -31,7 +31,8 @@ input_list_with_pet = ['\tcheck inventory   = Check your inventory',
                        '\tmove north        = Walk north',
                        '\tmove south        = Walk south',
                        '\tmove east         = Walk east',
-                       '\tmove west         = Walk west'
+                       '\tmove west         = Walk west',
+                       '\tquit              = quit'
                        ]
 
 # player options without pet listed for the player to prompt input
@@ -40,7 +41,8 @@ input_list_no_pet = ['\tcheck inventory   = Check your inventory',
                      '\tmove north        = Walk north',
                      '\tmove south        = Walk south',
                      '\tmove east         = Walk east',
-                     '\tmove west         = Walk west'
+                     '\tmove west         = Walk west',
+                     '\tquit              = quit'
                      ]
 
 # map of corresponding methods to the player's input
@@ -50,7 +52,8 @@ output_list_with_pet = {'check inventory'   : 'checkInventory',
                         'move north'        : ('walk', 'north'),
                         'move south'        : ('walk', 'south'),
                         'move east'         : ('walk', 'east'),
-                        'move west'         : ('walk', 'west')
+                        'move west'         : ('walk', 'west'),
+                        'quit'              : 'quit'
                         }
 
 # player options listed for the player to prompt input for pet interaction
@@ -59,7 +62,8 @@ input_pet_interaction_list = [  '\tcall pet       = Call your pet',
                                 '\tpet pet        = Pet your pet',
                                 '\tplay with pet  = Play with your pet',
                                 '\tfeed pet       = Feed your pet',
-                                '\tcheck hunger   = Check if your pet is hungry'
+                                '\tcheck hunger   = Check if your pet is hungry',
+                                '\tquit           = quit'
                              ]
 
 # map of corresponding methods to the player's input for pet interaction
@@ -67,7 +71,8 @@ output_pet_interaction_list = { 'call pet'      : 'callPet',
                                 'look at pet'   : 'lookAtPet',
                                 'pet pet'       : 'petPet',
                                 'play with pet' : 'playWithPet',
-                                'feed pet'     : 'feedPet',
-                                'check hunger'  : 'checkPetsHunger'
+                                'feed pet'      : 'feedPet',
+                                'check hunger'  : 'checkPetsHunger',
+                                'quit'          : 'quit'
                                }
 
