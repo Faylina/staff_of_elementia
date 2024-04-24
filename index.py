@@ -124,15 +124,18 @@ else:
             print(witch.get_forest().enterCell())
 
             # ---------- START INTERACTION LOOP ---------#
+
             while not game.get_game_over():
 
                 see_options = input('\nPress Enter to see your current options.')
 
                 # ---------- PRESENT OPTIONS ---------#
 
-                options_pet     = gameplay_snippets.input_list_with_pet
-                options_no_pet  = gameplay_snippets.input_list_no_pet
-                actions         = gameplay_snippets.output_list_with_pet
+                options_pet                 = gameplay_snippets.input_list_with_pet
+                options_no_pet              = gameplay_snippets.input_list_no_pet
+                options_for_pet_interaction = gameplay_snippets.input_pet_interaction_list
+                actions                     = gameplay_snippets.output_list_with_pet
+                pet_interactions            = gameplay_snippets.output_pet_interaction_list
 
                 # print prompt depending on whether the witch has a pet
                 if witch.get_familiar() is None:
@@ -150,23 +153,47 @@ else:
 
                 # ---------- EXECUTE ACTION ---------#
 
-                # get the chosen method and its arguments from the actions list
-                args = None
-                method = actions[action]
-                if type(method) == tuple:
-                    method_name, args = method
-                else:
-                    method_name = method
+                try:
+                    # get the chosen method and its arguments from the actions list
+                    args = None
+                    method = actions[action]
+                    if type(method) == tuple:
+                        method_name, args = method
+                    else:
+                        method_name = method
 
-                # create a reference of the method
-                method_reference = lambda method: getattr(witch, method)
-                method = method_reference(method_name)
+                    # create a reference of the method if it's not a pet interaction
+                    if method_name != 'interactWithPet':
+                        method_reference = lambda method: getattr(witch, method)
+                        method = method_reference(method_name)
 
-                # call the method
-                if args is None:
-                    print(method())
-                else:
-                    print(method(args))
+                        # call the method
+                        if args is None:
+                            print(method())
+                        else:
+                            print(method(args))
+
+                    # ---------- PRESENT PET OPTIONS ---------#
+                    else:
+                        print(f'\nHow would you like to interact with {witch.get_familiar().get_name()}?')
+                        for string in options_for_pet_interaction:
+                            print(string)
+                        interaction = input('\nChoose interaction:\n')
+                        interaction = interaction.strip().lower()
+
+                        # ---------- EXECUTE PET INTERACTION ---------#
+
+                        # get the chosen method from the interactions list
+                        method = pet_interactions[interaction]
+
+                        # create a reference of the interaction method
+                        method_reference = lambda method: getattr(witch, method)
+                        method = method_reference(method)
+
+                        # call the method
+                        print(method())
+                except KeyError:
+                    print('This is not a valid action.')
 
 
 

@@ -67,7 +67,7 @@ output_pet_interaction_list = { 'call pet'      : 'callPet',
                                 'look at pet'   : 'lookAtPet',
                                 'pet pet'       : 'petPet',
                                 'play with pet' : 'playWithPet',
-                                'feed pet '     : 'feedPet',
+                                'feed pet'     : 'feedPet',
                                 'check hunger'  : 'checkPetsHunger'
                                }
 
