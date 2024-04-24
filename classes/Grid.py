@@ -32,7 +32,7 @@ class Grid:
     def set_grid(self, value) -> None:
         """Creates the grid that the game starts off with."""
 
-        if value is not None and type(value) == dict:
+        if value is not None and type(value) is dict:
             self.__grid = value
 
         else:
@@ -56,7 +56,7 @@ class Grid:
             current_grid += f"\n\t{cell.get_coordinates()}: {cell.describeEnvironment()}"
         return current_grid
 
-    def addCell(self, cell: Cell):
+    def addCell(self, cell: Cell) -> str:
         """Adds a cell to the grid."""
         debug_functions.debugMethod(self)
 

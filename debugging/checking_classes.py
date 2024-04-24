@@ -15,6 +15,7 @@ from classes.Witch import Witch
 from classes.Potion import Potion
 from classes.Cell import Cell
 from classes.Grid import Grid
+from classes.Forest import Forest
 
 
 
@@ -296,6 +297,7 @@ print('\nEmpty Witch object:',
       '\nGold:',              witch1.get_gold(),
       '\nPouch:',             witch1.get_pouch(),
       '\nSpellbook:',         witch1.get_spellbook(),
+      '\nForest:',            witch1.get_forest(),
       '\nAction list:',       witch1.get_action_list(),
       '\nWitch Art:',         witch1.get_art())
 
@@ -335,6 +337,7 @@ print('\nFilled Witch object:',
       '\nGold:',              witch2.get_gold(),
       '\nPouch:',             witch2.get_pouch(),
       '\nSpellbook:',         witch2.get_spellbook(),
+      '\nForest:',            witch2.get_forest(),
       '\nAction list:',       witch2.get_action_list(),
       '\nWitch Art:',         witch2.get_art())
 
@@ -374,6 +377,7 @@ print('\nFaulty Witch object:',
       '\nGold:',              witch3.get_gold(),
       '\nPouch:',             witch3.get_pouch(),
       '\nSpellbook:',         witch3.get_spellbook(),
+      '\nForest:',            witch3.get_forest(),
       '\nAction list:',       witch3.get_action_list(),
       '\nWitch Art:',         witch3.get_art())
 
@@ -395,13 +399,6 @@ print("\nPlay with pet:",      witch2.playWithPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
 print("\nFeed pet:",           witch2.feedPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
-#print("\nBrew potion:",        witch2.brewPotion())    - testing further below
-#print("\nCast spell:",         witch2.castSpell())     - testing further below
-print("\nWalk:",               witch2.walk())
-print("\nSearch:",             witch2.search())
-print("\nFlee:",               witch2.flee())
-
-
 
 #---------- TESTING POTION ---------#
 print('\n>>> Testing empty Potion object:')
@@ -581,6 +578,8 @@ print('\nFaulty Grid object:',
 
 print('\n>>> Testing Grid method addCell():')
 grid1.addCell(cell2)
+cell4 = Cell((2,1), 1, 'scenery', False)
+grid1.addCell(cell4)
 
 print('\n>>> Testing Grid method displayGrid():')
 print(grid1.displayGrid())
@@ -588,4 +587,57 @@ print(grid1.displayGrid())
 herb = 'herb'
 grid1.addCell(herb)
 print('Testing invalid Cell object: Add herb', grid1.displayGrid())
+
+
+
+#---------- TESTING FOREST ---------#
+print('\n>>> Testing empty Forest object:')
+
+forest1 = Forest()
+
+print('\nEmpty Forest object:',
+      '\nGrid Layout:', forest1.get_grid_layout(),
+      '\nPosition:',    forest1.get_position(),
+      '\nGrid:',        forest1.get_grid())
+
+
+print('\n>>> Testing filled Forest object:')
+
+# grid_layout=None, position=None, grid=None
+forest2 = Forest('3x3', [1,1], grid1)
+
+print('\nFilled Forest object:',
+      '\nGrid Layout:', forest2.get_grid_layout(),
+      '\nPosition:',    forest2.get_position(),
+      '\nGrid:',        forest2.get_grid())
+
+
+print('\n>>> Testing faulty Forest object:')
+
+# grid_layout=None, position=None, grid=None
+forest3 = Forest(9, {1,2}, grid2)
+
+print('\nFaulty Forest object:',
+      '\nGrid Layout:', forest3.get_grid_layout(),
+      '\nPosition:',    forest3.get_position(),
+      '\nGrid:',        forest3.get_grid())
+
+print('\n>>> Testing Witch method walk():')
+
+witch4 = Witch(dog2,
+               'Witchy',
+               30,
+               15,
+               15,
+               10,
+               250,
+               pouch1,
+               spellbook1,
+               forest2,
+               [])
+
+print(witch4.walk('east'))
+
+
+
 

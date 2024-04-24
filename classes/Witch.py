@@ -13,7 +13,8 @@ from classes.Cat        import Cat
 from classes.Dog        import Dog
 from classes.Ingredient import Ingredient
 from classes.Spell      import Spell
-from classes.Potion      import Potion
+from classes.Potion     import Potion
+from classes.Forest     import Forest
 
 
 #---------- CLASS -----------#
@@ -33,6 +34,7 @@ class Witch:
                  gold           = 30,
                  pouch          = Pouch(),
                  spellbook      = Spellbook(),
+                 forest         = Forest(),
                  action_list    = None
                  ):
         """
@@ -42,12 +44,13 @@ class Witch:
         :param __name        : str                  = 'Asciri'     name of the witch
         :param __max_HP      : int                  = 20           maximum health points of the witch
         :param __current_HP  : int                  = 20           current health point of the witch
-        :param __max_MP      : int                   = 0            maximum mana points of the witch
+        :param __max_MP      : int                  = 0            maximum mana points of the witch
         :param __current_MP  : int                  = 0            current mana point of the witch
         :param __gold        : int                  = 30           gold in possession of the witch
         :param __pouch       : Pouch                = Pouch()      inventory of the witch
         :param __spellbook   : Spellbook            = Spellbook()  spellbook of the witch
-        :param __action_list : list                 = None           list of currently available actions
+        :param __forest      : Forest               = Forest()     the forest that the witch is currently in
+        :param __action_list : list                 = None         list of currently available actions
         :param __witch_art   : str                  = string       image of the witch
         """
         debug_functions.debugClass(self)
@@ -70,6 +73,8 @@ class Witch:
             self.set_pouch(pouch)
         if spellbook != '' and spellbook is not None:
             self.set_spellbook(spellbook)
+        if forest != '' and forest is not None:
+            self.set_forest(forest)
 
         self.set_action_list(action_list)
         self.set_art()
@@ -245,6 +250,21 @@ class Witch:
             return self.__spellbook
         except AttributeError:
             print('ERROR: Failed to get the spellbook.')
+
+    # forest
+    def set_forest(self, value: Forest) -> None:
+
+        if isinstance(value, Forest):
+            self.__forest = value
+        else:
+            print('This is not a forest.')
+
+    def get_forest(self) -> Forest:
+        """Fetches the forest that the witch is in."""
+        try:
+            return self.__forest
+        except AttributeError:
+            print('ERROR: Failed to get the forest.')
 
 
     # action_list
@@ -576,13 +596,74 @@ class Witch:
                         f'of {self.get_max_HP()} HP.')
 
 
-    def walk(self):
+    def walk(self, direction: str) -> str:
         debug_functions.debugMethod(self)
+
+        current_position = self.get_forest().get_position()
+        old_x = current_position[0]
+        old_y = current_position[1]
+
+        border_x = int(self.get_forest().get_grid_layout()['x'])
+        border_y = int(self.get_forest().get_grid_layout()['y'])
+
+        # walk east
+        if direction == 'east':
+            # check x border
+            if (old_x + 1) > border_x:
+                return 'This is the end of the forest. The path is blocked.'
+            else:
+                # leave previous cell
+                self.get_forest().leaveCell()
+                # update position
+                self.get_forest().set_position([old_x + 1, old_y])
+                # enter new cell
+                return self.get_forest().enterCell()
+
+        # walk west
+        elif direction == 'west':
+            # check x border
+            if (old_x - 1) == 0:
+                return 'This is the end of the forest. The path is blocked.'
+            else:
+                # leave previous cell
+                self.get_forest().leaveCell()
+                # update position
+                self.get_forest().set_position([old_x - 1, old_y])
+                # enter new cell
+                return self.get_forest().enterCell()
+
+        # walk north
+        elif direction == 'north':
+            # check y border
+            if (old_y + 1) > border_y:
+                return 'This is the end of the forest. The path is blocked.'
+            else:
+                # leave previous cell
+                self.get_forest().leaveCell()
+                # update position
+                self.get_forest().set_position([old_x, old_y + 1])
+                # enter new cell
+                return self.get_forest().enterCell()
+
+        # walk south
+        elif direction == 'south':
+            # check y border
+            if (old_y - 1) == 0:
+                return 'This is the end of the forest. The path is blocked.'
+            else:
+                # leave previous cell
+                self.get_forest().leaveCell()
+                # update position
+                self.get_forest().set_position([old_x, old_y - 1])
+                # enter new cell
+                return self.get_forest().enterCell()
 
 
     def search(self):
         debug_functions.debugMethod(self)
+        # TODO: finish search method
 
 
     def flee(self):
         debug_functions.debugMethod(self)
+        # TODO: finish flee method
