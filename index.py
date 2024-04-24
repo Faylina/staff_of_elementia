@@ -1,5 +1,14 @@
 #---------------------------------------#
 #--------- STAFF OF ELEMENTIA ----------#
+#-------------- GAMEPLAY ---------------#
 #---------------------------------------#
 
-from abc import ABC, abstractmethod
+"""This is the main gameplay."""
+
+#---------- IMPORTS -----------#
+
+#---------- VARIABLES ---------#
+
+game_over = False
+
+#---------- CREATING THE WORLD ---------#

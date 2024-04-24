@@ -48,7 +48,7 @@ class Ingredient:
             value = value.strip().title()
             self.__name = value
         except AttributeError:
-            print('This is not a valid name.')
+            print('This is not a valid ingredient name.')
 
     def get_name(self) -> None or str:
         """Fetches the formatted name of the ingredient."""

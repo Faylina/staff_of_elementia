@@ -16,6 +16,7 @@ from classes.Potion import Potion
 from classes.Cell import Cell
 from classes.Grid import Grid
 from classes.Forest import Forest
+from classes.Player import Player
 
 
 
@@ -637,6 +638,36 @@ witch4 = Witch(dog2,
                [])
 
 print(witch4.walk('east'))
+
+
+#---------- TESTING PLAYER ---------#
+print('\n>>> Testing empty Player object:')
+
+player1 = Player()
+
+print('\nEmpty Player object:',
+      '\nName:', player1.get_name())
+
+
+print('\n>>> Testing filled Player object:')
+
+# name=None
+player2 = Player('Sabrina')
+
+print('\nFilled Player object:',
+      '\nName:', player2.get_name())
+
+
+print('\n>>> Testing faulty Player object:')
+
+# name=None
+player3 = Player(9)
+
+print('\nFaulty Player object:',
+      '\nName:', player3.get_name())
+
+print('\n>>> Testing Player method greet():')
+print(player2.greetPlayer())
 
 
 
