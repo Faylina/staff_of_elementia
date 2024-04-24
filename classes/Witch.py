@@ -57,8 +57,9 @@ class Witch:
 
         if forest != '' and forest is not None:
             self.set_forest(forest)
-        if familiar != '' and familiar is not None:
-            self.set_familiar(familiar)
+
+        self.set_familiar(familiar)
+
         if name != '' and name is not None:
             self.set_name(name)
         if max_HP != '' and max_HP is not None:

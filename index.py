@@ -106,6 +106,69 @@ else:
             print(witch.adoptPet())
 
 
+        # ---------- START THE GAME ---------#
+
+        # level=1, end_of_level=False, game_over=True
+        game = Game()
+        game.startNewGame()
+
+        forest_confirmation = input('\nWould you like to enter the forest now? (y/n)\n')
+
+        if forest_confirmation != 'y':
+            print(f"Farewell, {player_name}. Come back when you're ready to tackle this challenge.")
+        else:
+
+            # ---------- ENTERING THE FOREST ---------#
+
+            # let witch enter the start point
+            print(witch.get_forest().enterCell())
+
+            # ---------- START INTERACTION LOOP ---------#
+            while not game.get_game_over():
+
+                see_options = input('\nPress Enter to see your current options.')
+
+                # ---------- PRESENT OPTIONS ---------#
+
+                options_pet     = gameplay_snippets.input_list_with_pet
+                options_no_pet  = gameplay_snippets.input_list_no_pet
+                actions         = gameplay_snippets.output_list_with_pet
+
+                # print prompt depending on whether the witch has a pet
+                if witch.get_familiar() is None:
+                    print('\nThis is what you could do now:')
+                    for string in options_no_pet:
+                        print(string)
+                    action = input('\nChoose wisely: ')
+                    action = action.strip().lower()
+                else:
+                    print('\nThis is what you could do now:')
+                    for string in options_pet:
+                        print(string)
+                    action = input('\nChoose wisely:\n')
+                    action = action.strip().lower()
+
+                # ---------- EXECUTE ACTION ---------#
+
+                # get the chosen method and its arguments from the actions list
+                args = None
+                method = actions[action]
+                if type(method) == tuple:
+                    method_name, args = method
+                else:
+                    method_name = method
+
+                # create a reference of the method
+                method_reference = lambda method: getattr(witch, method)
+                method = method_reference(method_name)
+
+                # call the method
+                if args is None:
+                    print(method())
+                else:
+                    print(method(args))
+
+
 
 
 
