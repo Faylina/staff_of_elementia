@@ -20,12 +20,11 @@ class Cell:
         Creates a Cell object with information about its coordinates, level, content, whether the
          witch is currently there and a list of descriptions of all cell's environments.
 
-        :param __coordinates      :tuple                          = None    The coordinates of the cell on the grid
-        :param __level            :int                            = None    level of the world
-        :param __content          :Ingredient or Enemy or None    = None    Content of the Cell
-                                                                            (ingredient, enemy, scenery)
-        :param __occupied         :bool                           = False   True if the witch is in this Cell
-        :param __env_descriptions :dict                           = None    List of all description of the environment
+        :param __coordinates      :tuple    = None    The coordinates of the cell on the grid
+        :param __level            :int      = None    level of the world
+        :param __content          :str      = None    Content of the Cell (ingredient, enemy, scenery)
+        :param __occupied         :bool     = False   True if the witch is in this Cell
+        :param __env_descriptions :dict     = None    List of all description of the environment
         """
         debug_functions.debugClass(self)
 

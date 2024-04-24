@@ -17,3 +17,13 @@ def debugClass(self) -> None:
     """ DEBUG: 'Class-name' object is being created. """
     if DEBUG:
         print(f"\nDEBUG: {type(self).__name__} object is being created.")
+
+def debugVariable(variable_name: str, variable) -> None:
+    """ DEBUG: 'Variable name' = variable """
+    if DEBUG:
+        print(f"\nDEBUG: '{variable_name}' = {variable}")
+
+def debugProcess(process: str) -> None:
+    """ DEBUG: 'Process' has been started."""
+    if DEBUG:
+        print(f"\nDEBUG: '{process}' has been started.")

@@ -7,6 +7,7 @@
 #---------- IMPORTS -----------#
 from debugging import debug_functions
 from classes.Grid import Grid
+from classes.Cell import Cell
 
 
 #---------- CLASS -----------#
@@ -110,6 +111,7 @@ class Forest:
         else:
             print('Wrong position.')
 
+
     def leaveCell(self):
         """Marks the cell as not occupied when the witch leaves it."""
         debug_functions.debugMethod(self)
@@ -121,4 +123,33 @@ class Forest:
             grid_dict[current_cell].leave()
         else:
             print('Wrong position.')
+
+
+    @staticmethod
+    def createGrid(level: int) -> Grid:
+        """Creates a new grid depending on the level."""
+        debug_functions.debugProcess('Forest.createGrid()')
+
+        if level == 1:
+
+            # Creating cells
+            cells = []
+            for i in range(1, 4):
+                for j in range(1, 4):
+                    # coordinates = None, level = None, content = None, occupied = False, env_descriptions = None
+                    cell = Cell((i, j), 1, 'scenery')
+                    cells.append(cell)
+            # debug
+            for cell in cells:
+                debug_functions.debugVariable(f'cell{cell.get_coordinates()}.get_coordinates()',
+                                              cell.get_coordinates())
+            # Creating Grid
+            # grid=None
+            grid = Grid()
+            for cell in cells:
+                grid.addCell(cell)
+
+            debug_functions.debugVariable('grid.get_grid()', grid.get_grid())
+
+            return grid
 
