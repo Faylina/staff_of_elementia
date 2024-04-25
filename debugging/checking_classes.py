@@ -289,6 +289,7 @@ print('\n>>> Testing empty Witch object:')
 witch1 = Witch()
 
 print('\nEmpty Witch object:',
+      '\nForest:',            witch1.get_forest(),
       '\nFamiliar:',          witch1.get_familiar(),
       '\nName:',              witch1.get_name(),
       '\nMax HP:',            witch1.get_max_HP(),
@@ -298,7 +299,6 @@ print('\nEmpty Witch object:',
       '\nGold:',              witch1.get_gold(),
       '\nPouch:',             witch1.get_pouch(),
       '\nSpellbook:',         witch1.get_spellbook(),
-      '\nForest:',            witch1.get_forest(),
       '\nAction list:',       witch1.get_action_list(),
       '\nWitch Art:',         witch1.get_art())
 
@@ -306,6 +306,7 @@ print('\nEmpty Witch object:',
 print('\n>>> Testing filled Witch object:')
 
 '''
+forest         = Forest()
 familiar       = None,
 name           = 'Asciri',
 max_HP         = 20,
@@ -317,7 +318,9 @@ pouch          = Pouch(),
 spellbook      = Spellbook(),
 action_list    = []
 '''
-witch2 = Witch(dog2,
+forest = Forest()
+witch2 = Witch(forest,
+               dog2,
                'Witchy',
                30,
                15,
@@ -329,6 +332,7 @@ witch2 = Witch(dog2,
                [])
 
 print('\nFilled Witch object:',
+      '\nForest:',            witch2.get_forest(),
       '\nFamiliar:',          witch2.get_familiar(),
       '\nName:',              witch2.get_name(),
       '\nMax HP:',            witch2.get_max_HP(),
@@ -338,7 +342,6 @@ print('\nFilled Witch object:',
       '\nGold:',              witch2.get_gold(),
       '\nPouch:',             witch2.get_pouch(),
       '\nSpellbook:',         witch2.get_spellbook(),
-      '\nForest:',            witch2.get_forest(),
       '\nAction list:',       witch2.get_action_list(),
       '\nWitch Art:',         witch2.get_art())
 
@@ -346,6 +349,7 @@ print('\nFilled Witch object:',
 print('\n>>> Testing faulty Witch object:')
 
 '''
+forest         = Forest()
 familiar       = None,
 name           = 'Asciri',
 max_HP         = 20,
@@ -357,7 +361,8 @@ pouch          = Pouch(),
 spellbook      = Spellbook(),
 action_list    = []
 '''
-witch3 = Witch(pouch2,
+witch3 = Witch( forest,
+                pouch2,
                12,
                15,
                -4,
@@ -369,6 +374,7 @@ witch3 = Witch(pouch2,
                ['herbs'])
 
 print('\nFaulty Witch object:',
+      '\nForest:',            witch3.get_forest(),
       '\nFamiliar:',          witch3.get_familiar(),
       '\nName:',              witch3.get_name(),
       '\nMax HP:',            witch3.get_max_HP(),
@@ -378,7 +384,6 @@ print('\nFaulty Witch object:',
       '\nGold:',              witch3.get_gold(),
       '\nPouch:',             witch3.get_pouch(),
       '\nSpellbook:',         witch3.get_spellbook(),
-      '\nForest:',            witch3.get_forest(),
       '\nAction list:',       witch3.get_action_list(),
       '\nWitch Art:',         witch3.get_art())
 
@@ -625,7 +630,8 @@ print('\nFaulty Forest object:',
 
 print('\n>>> Testing Witch method walk():')
 
-witch4 = Witch(dog2,
+witch4 = Witch(forest2,
+               dog2,
                'Witchy',
                30,
                15,
@@ -634,7 +640,6 @@ witch4 = Witch(dog2,
                250,
                pouch1,
                spellbook1,
-               forest2,
                [])
 
 print(witch4.walk('east'))
@@ -668,7 +673,4 @@ print('\nFaulty Player object:',
 
 print('\n>>> Testing Player method greet():')
 print(player2.greetPlayer())
-
-
-
 

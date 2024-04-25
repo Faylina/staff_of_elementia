@@ -40,7 +40,8 @@ else:
     # TODO: check if the player has played before
 
     # case: player has not played before
-    new_game_confirmation = input(f'\nAre you ready to start a new adventure, {player_name}? (y/n)\n')
+    print(player.greetPlayer())
+    new_game_confirmation = input('Are you ready to start a new adventure? (y/n)\n')
     new_game_confirmation = new_game_confirmation.strip().lower()
     debug_functions.debugVariable('new_game_confirmation', new_game_confirmation)
 
@@ -154,8 +155,11 @@ else:
                 # ---------- EXECUTE ACTION ---------#
 
                 try:
-                    # get the chosen method and its arguments from the actions list
+                    # preparation for constructing the chosen method
                     args = None
+                    method_reference = lambda method: getattr(witch, method)
+
+                    # get the chosen method and its arguments from the actions list
                     method = actions[action]
                     if type(method) == tuple:
                         method_name, args = method
@@ -188,8 +192,7 @@ else:
 
                         # ---------- PET INTERACTIONS ---------#
                         else:
-                            # create a reference of the interaction method
-                            method_reference = lambda method: getattr(witch, method)
+                            # create a reference of the pet interaction method
                             method = method_reference(method)
 
                             # call the method
@@ -198,7 +201,6 @@ else:
                     # ---------- EXECUTE OTHER ACTIONS ---------#
                     else:
                         # create a reference of the method if it's not a pet interaction
-                        method_reference = lambda method: getattr(witch, method)
                         method = method_reference(method_name)
 
                         # call the method
