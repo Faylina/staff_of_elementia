@@ -5,7 +5,7 @@
 """The class for the creation of the forest."""
 
 #---------- IMPORTS -----------#
-from debugging import debug_functions
+from debugging    import debug_functions
 from classes.Grid import Grid
 from classes.Cell import Cell
 
@@ -44,7 +44,7 @@ class Forest:
             value = value.strip()
 
             x = value[0]
-            y = value[0]
+            y = value[2]
             size = {'x': x, 'y': y}
 
             self.__grid_layout = size
@@ -80,7 +80,7 @@ class Forest:
 
     # grid
     def set_grid(self, value: Grid) -> None:
-
+        """Defines the grid of the current forest."""
         if isinstance(value, Grid):
             self.__grid = value
         else:
@@ -96,7 +96,7 @@ class Forest:
 
     # ------ METHODS --------#
 
-    def enterCell(self):
+    def enterCell(self) -> str or None:
         """Marks the cell as occupied when the witch enters it."""
         debug_functions.debugMethod(self)
 
@@ -110,7 +110,7 @@ class Forest:
             print('Wrong position.')
 
 
-    def leaveCell(self):
+    def leaveCell(self) -> None:
         """Marks the cell as not occupied when the witch leaves it."""
         debug_functions.debugMethod(self)
 

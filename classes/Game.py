@@ -83,12 +83,12 @@ class Game:
 
     # ------ METHODS --------#
 
-    def quitGame(self):
+    def quitGame(self) -> None:
         """Ends the game."""
         debug_functions.debugMethod(self)
         self.set_game_over(True)
 
-    def startNewGame(self):
+    def startNewGame(self) -> None:
         """Starts the game."""
         debug_functions.debugMethod(self)
         self.set_game_over(False)

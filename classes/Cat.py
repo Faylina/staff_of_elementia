@@ -6,7 +6,7 @@
 
 #---------- IMPORTS -----------#
 from classes.Pet import Pet
-from debugging import debug_functions
+from debugging   import debug_functions
 
 
 #---------- CLASS -----------#

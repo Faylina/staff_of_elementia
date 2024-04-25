@@ -149,7 +149,7 @@ class Spell:
 
     # ------ METHODS --------#
 
-    def checkEffect(self):
+    def checkEffect(self) -> str:
         """Returns a description of the spell's effect."""
         debug_functions.debugMethod(self)
         if self.get_effect() == "offensive":

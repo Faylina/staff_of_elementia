@@ -132,7 +132,7 @@ class Ingredient:
 
     # ------ METHODS --------#
 
-    def checkEffect(self):
+    def checkEffect(self) -> str or None:
         """Returns which effect the ingredient has and how effective this effect is."""
         debug_functions.debugMethod(self)
         try:

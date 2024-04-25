@@ -5,7 +5,7 @@
 """The class for the creation of the grid of the forest."""
 
 #---------- IMPORTS -----------#
-from debugging import debug_functions
+from debugging    import debug_functions
 from classes.Cell import Cell
 
 
@@ -31,10 +31,8 @@ class Grid:
 
     def set_grid(self, value) -> None:
         """Creates the grid that the game starts off with."""
-
         if value is not None and type(value) is dict:
             self.__grid = value
-
         else:
             self.__grid = {}
 

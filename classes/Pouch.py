@@ -7,8 +7,8 @@
 #---------- IMPORTS -----------#
 
 from classes.Ingredient import Ingredient
-from classes.Potion import Potion
-from debugging import debug_functions
+from classes.Potion     import Potion
+from debugging          import debug_functions
 
 
 #---------- CLASS -----------#
@@ -33,10 +33,8 @@ class Pouch:
 
     def set_inventory(self, value) -> None:
         """Creates the pouch that the witch starts off with."""
-
         if value is not None and type(value) == dict:
             self.__inventory = value
-
         else:
             self.__inventory = {}
 
@@ -53,6 +51,7 @@ class Pouch:
     def displayInventory(self) -> str:
         """Lists all ingredients in the pouch with their respective amounts."""
         debug_functions.debugMethod(self)
+
         current_inventory = '\nYour current inventory:'
         for item in self.get_inventory().values():
             current_inventory += f"\n\t{item.get_amount()}x {item.get_name()}"

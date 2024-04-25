@@ -6,8 +6,8 @@
 
 #---------- IMPORTS -----------#
 
-from classes.Spell import Spell
-from debugging import debug_functions
+from classes.Spell  import Spell
+from debugging      import debug_functions
 
 
 #---------- CLASS -----------#
@@ -30,14 +30,14 @@ class Spellbook:
 
     #------ GETTER & SETTER --------#
 
-    def set_arsenal(self, value):
+    def set_arsenal(self, value: dict or None) -> None:
         """Creates the list of spells that the witch starts off with."""
         if value is not None and type(value) == dict:
             self.__arsenal = value
         else:
             self.__arsenal = {}
 
-    def get_arsenal(self):
+    def get_arsenal(self) -> dict:
         """Fetches the arsenal of the spellbook."""
         try:
             return self.__arsenal

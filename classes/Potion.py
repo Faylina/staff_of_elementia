@@ -160,7 +160,7 @@ class Potion:
 
 
     # ------ METHODS --------#
-    def checkEffect(self):
+    def checkEffect(self) -> str:
         """Returns a description of the potion's effect."""
         debug_functions.debugMethod(self)
 

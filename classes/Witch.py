@@ -84,7 +84,7 @@ class Witch:
 
     # forest
     def set_forest(self, value: Forest) -> None:
-
+        """Defines the forest that the witch is in."""
         if isinstance(value, Forest):
             self.__forest = value
         else:
@@ -254,7 +254,7 @@ class Witch:
 
     # spellbook
     def set_spellbook(self, value: Spellbook) -> None:
-
+        """Creates the spellbook of the witch."""
         if isinstance(value, Spellbook):
             self.__spellbook = value
         else:
@@ -268,8 +268,8 @@ class Witch:
             print('ERROR: Failed to get the spellbook.')
 
 
-    # action_list
-    def set_action_list(self, value):
+    # action_list (- to be deleted?)
+    def set_action_list(self, value: list) -> None:
         """Creates the list of action that the witch can perform."""
 
         if value is not None and type(value) == list:
@@ -299,7 +299,7 @@ class Witch:
 
             self.__action_list = initial_action_list
 
-    def get_action_list(self):
+    def get_action_list(self) -> list:
         """Fetches the list of actions that the witch is able to perform."""
         try:
             return self.__action_list
@@ -376,7 +376,8 @@ class Witch:
 
 
     @staticmethod
-    def choosePet():
+    def choosePet() -> Dog or Cat or None:
+        """Allows the player to create and customize the witch's pet."""
         pet_choice = input('\nWhat kind of pet would you like to adopt? (cat/dog)\n')
         pet_choice = pet_choice.strip().lower()
         debug_functions.debugVariable('pet_choice', pet_choice)
@@ -462,6 +463,7 @@ class Witch:
 
 
     def brewPotion(self, ingredient1: Ingredient, ingredient2: Ingredient) -> Potion:
+        """Brews a potion depending on the provided ingredients and puts it in the pouch."""
         debug_functions.debugMethod(self)
 
         # healing ingredients
@@ -601,6 +603,7 @@ class Witch:
 
 
     def castSpell(self, spell: Spell) -> str:
+        """Casts a spell."""
         debug_functions.debugMethod(self)
 
         if spell.get_effect() == 'offensive':
@@ -642,6 +645,7 @@ class Witch:
 
 
     def walk(self, direction: str) -> str:
+        """Move around in the forest."""
         debug_functions.debugMethod(self)
 
         current_position = self.get_forest().get_position()
@@ -705,10 +709,12 @@ class Witch:
 
 
     def search(self):
+        """Search for an ingredient in the forest."""
         debug_functions.debugMethod(self)
         # TODO: finish search method
 
 
     def flee(self):
+        """Flee from an enemy."""
         debug_functions.debugMethod(self)
         # TODO: finish flee method

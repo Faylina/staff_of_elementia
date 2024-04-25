@@ -2,7 +2,7 @@
 #------------ PET CLASS ----------------#
 #---------------------------------------#
 
-"""The parent class for the adoption of a dog or cat"""
+"""The abstract parent class for the adoption of a dog or cat"""
 
 #---------- IMPORTS -----------#
 from abc            import ABC, abstractmethod

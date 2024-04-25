@@ -5,22 +5,23 @@
 #---------- IMPORTS --------------------#
 
 from classes.Ingredient import Ingredient
-from classes.Pouch import Pouch
-# from classes.Pet import Pet
-from classes.Dog import Dog
-from classes.Cat import Cat
-from classes.Spell import Spell
-from classes.Spellbook import Spellbook
-from classes.Witch import Witch
-from classes.Potion import Potion
-from classes.Cell import Cell
-from classes.Grid import Grid
-from classes.Forest import Forest
-from classes.Player import Player
+from classes.Pouch      import Pouch
+# from classes.Pet      import Pet
+from classes.Dog        import Dog
+from classes.Cat        import Cat
+from classes.Spell      import Spell
+from classes.Spellbook  import Spellbook
+from classes.Witch      import Witch
+from classes.Potion     import Potion
+from classes.Cell       import Cell
+from classes.Grid       import Grid
+from classes.Forest     import Forest
+from classes.Player     import Player
 
 
 
 #---------- TESTING INGREDIENT ---------#
+
 print('\n>>> Testing empty Ingredient object:')
 
 ingredient1 = Ingredient()
@@ -65,6 +66,7 @@ print('\nFaulty Ingredient object:', ingredient3.checkEffect())
 
 
 #---------- TESTING POUCH ---------#
+
 print('\n>>> Testing empty Pouch object:')
 # inventory=None
 pouch1 = Pouch()
@@ -103,6 +105,7 @@ print('Testing removing ingredient:', pouch1.displayInventory())
 
 
 #---------- TESTING DOG ---------#
+
 print('\n>>> Testing empty Dog object:')
 
 dog1 = Dog()
@@ -155,6 +158,7 @@ print(dog2.look())
 
 
 #---------- TESTING CAT ---------#
+
 print('\n>>> Testing empty Cat object:')
 
 cat1 = Cat()
@@ -208,6 +212,7 @@ print(cat2.look())
 
 
 #---------- TESTING SPELL ---------#
+
 print('\n>>> Testing empty Spell object:')
 
 spell1 = Spell()
@@ -259,6 +264,7 @@ print(spell2.checkEffect())
 
 
 #---------- TESTING SPELLBOOK ---------#
+
 print('\n>>> Testing empty Spellbook object:')
 # arsenal=[]
 spellbook1 = Spellbook()
@@ -284,6 +290,7 @@ print('Testing invalid object: Add herb', spellbook1.displayArsenal())
 
 
 #---------- TESTING WITCH ---------#
+
 print('\n>>> Testing empty Witch object:')
 
 witch1 = Witch()
@@ -406,7 +413,11 @@ print("\nCheck pet's hunger:", witch2.checkPetsHunger())
 print("\nFeed pet:",           witch2.feedPet())
 print("\nCheck pet's hunger:", witch2.checkPetsHunger())
 
+
+
+
 #---------- TESTING POTION ---------#
+
 print('\n>>> Testing empty Potion object:')
 
 potion1 = Potion()
@@ -523,6 +534,7 @@ print(witch2.checkInventory())
 
 
 #---------- TESTING CELL ---------#
+
 print('\n>>> Testing empty Cell object:')
 
 cell1 = Cell()
@@ -569,6 +581,7 @@ print('\nCell describeEnvironment():', cell2.describeEnvironment())
 
 
 #---------- TESTING GRID ---------#
+
 print('\n>>> Testing empty Grid object:')
 # grid=None
 grid1 = Grid()
@@ -597,6 +610,7 @@ print('Testing invalid Cell object: Add herb', grid1.displayGrid())
 
 
 #---------- TESTING FOREST ---------#
+
 print('\n>>> Testing empty Forest object:')
 
 forest1 = Forest()
@@ -646,6 +660,7 @@ print(witch4.walk('east'))
 
 
 #---------- TESTING PLAYER ---------#
+
 print('\n>>> Testing empty Player object:')
 
 player1 = Player()
