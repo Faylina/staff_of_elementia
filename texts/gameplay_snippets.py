@@ -32,7 +32,7 @@ input_list_with_pet = ['\tcheck inventory   = Check your inventory',
                        '\tmove south        = Walk south',
                        '\tmove east         = Walk east',
                        '\tmove west         = Walk west',
-                       '\tquit              = quit'
+                       '\tquit              = Quit'
                        ]
 
 # player options without pet listed for the player to prompt input
@@ -42,7 +42,7 @@ input_list_no_pet = ['\tcheck inventory   = Check your inventory',
                      '\tmove south        = Walk south',
                      '\tmove east         = Walk east',
                      '\tmove west         = Walk west',
-                     '\tquit              = quit'
+                     '\tquit              = Quit'
                      ]
 
 # map of corresponding methods to the player's input
@@ -63,7 +63,7 @@ input_pet_interaction_list = [  '\tcall pet       = Call your pet',
                                 '\tplay with pet  = Play with your pet',
                                 '\tfeed pet       = Feed your pet',
                                 '\tcheck hunger   = Check if your pet is hungry',
-                                '\tquit           = quit'
+                                '\tquit           = Quit'
                              ]
 
 # map of corresponding methods to the player's input for pet interaction

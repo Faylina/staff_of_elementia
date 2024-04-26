@@ -139,18 +139,17 @@ else:
                 pet_interactions            = gameplay_snippets.output_pet_interaction_list
 
                 # print prompt depending on whether the witch has a pet
+                print('\nThis is what you could do now:')
+
                 if witch.get_familiar() is None:
-                    print('\nThis is what you could do now:')
                     for string in options_no_pet:
                         print(string)
-                    action = input('\nChoose wisely: ')
-                    action = action.strip().lower()
                 else:
-                    print('\nThis is what you could do now:')
                     for string in options_pet:
                         print(string)
-                    action = input('\nChoose wisely:\n')
-                    action = action.strip().lower()
+
+                action = input('\nChoose wisely:\n')
+                action = action.strip().lower()
 
                 # ---------- EXECUTE ACTION ---------#
 
